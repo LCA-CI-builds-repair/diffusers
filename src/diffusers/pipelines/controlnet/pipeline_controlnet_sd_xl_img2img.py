@@ -20,7 +20,8 @@ import numpy as np
 import PIL.Image
 import torch
 import torch.nn.functional as F
-from transformers import CLIPTextModel, CLIPTextModelWithProjection, CLIPTokenizer
+from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTextModelWithProjection, CLIPTokenizer, \
+    CLIPVisionModelWithProjection
 
 from diffusers.utils.import_utils import is_invisible_watermark_available
 
@@ -30,7 +31,7 @@ from ...loaders import (
     TextualInversionLoaderMixin,
     IPAdapterMixin,
 )
-from ...models import AutoencoderKL, ControlNetModel, UNet2DConditionModel
+from ...models import AutoencoderKL, ControlNetModel, ImageProjection, UNet2DConditionModel
 from ...models.attention_processor import (
     AttnProcessor2_0,
     LoRAAttnProcessor2_0,
