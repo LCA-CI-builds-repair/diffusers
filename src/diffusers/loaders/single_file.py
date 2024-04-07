@@ -30,6 +30,7 @@ from .single_file_utils import (
     create_text_encoders_and_tokenizers_from_ldm,
     fetch_original_config,
     infer_model_type,
+    FromSingleFileMixin,
 )
 
 

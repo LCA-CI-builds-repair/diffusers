@@ -58,6 +58,7 @@ if is_torch_available():
     _import_structure["utils"] = ["AttnProcsLayers"]
 
     if is_transformers_available():
+        from .single_file import FromSingleFileMixin
         _import_structure["single_file"] = ["FromSingleFileMixin"]
         _import_structure["lora"] = ["LoraLoaderMixin", "StableDiffusionXLLoraLoaderMixin"]
         _import_structure["textual_inversion"] = ["TextualInversionLoaderMixin"]

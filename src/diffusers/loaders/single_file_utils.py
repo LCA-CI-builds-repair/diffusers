@@ -32,6 +32,8 @@ from ..models import UNet2DConditionModel
 from ..schedulers import (
     DDIMScheduler,
     DDPMScheduler,
+    FromSingleFileMixin,
+)
     DPMSolverMultistepScheduler,
     EulerAncestralDiscreteScheduler,
     EulerDiscreteScheduler,
