@@ -16,13 +16,10 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import torch
 from torch import nn
-from torch.nn import functional as F
-
-from ..configuration_utils import ConfigMixin, register_to_config
-from ..loaders import FromSingleFileMixin
+from ..configuration\_utils import ConfigMixin, register\_to\_config
+from diffusers.loaders.single\_file import FromSingleFileMixin
 from ..utils import BaseOutput, logging
-from .attention_processor import (
-    ADDED_KV_ATTENTION_PROCESSORS,
+from .attention\_processor import (
     CROSS_ATTENTION_PROCESSORS,
     AttentionProcessor,
     AttnAddedKVProcessor,
