@@ -26,6 +26,20 @@ from safetensors.torch import load_file as safe_load
 from transformers import (
     CLIPTextConfig,
     CLIPTextModel,
+)
+
+def load_file(path):
+    with open(path, 'rb') as f:
+        data = f.read()
+    return BytesIO(data)
+
+def load_yaml(path):
+    with open(path, 'r') as f:
+        data = yaml.safe_load(f)
+    return data
+
+def load_torch_file(path):
+    return torch.load(path)
     CLIPTextModelWithProjection,
     CLIPTokenizer,
 )
