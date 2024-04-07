@@ -19,7 +19,7 @@ from torch import nn
 from torch.nn import functional as F
 
 from ..configuration_utils import ConfigMixin, register_to_config
-from ..loaders import FromSingleFileMixin
+from ..loaders.single_file import FromSingleFileMixin  # Corrected import path
 from ..utils import BaseOutput, logging
 from .attention_processor import (
     ADDED_KV_ATTENTION_PROCESSORS,
