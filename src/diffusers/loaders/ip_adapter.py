@@ -16,6 +16,9 @@ from typing import Dict, Optional, Union
 
 import torch
 from huggingface_hub.utils import validate_hf_hub_args
+
+# Fix for F401 warning: Use the `typing.Optional` type hint instead of the `Optional` type.
+from typing import Optional as RealOptional
 from safetensors import safe_open
 
 from ..utils import (
