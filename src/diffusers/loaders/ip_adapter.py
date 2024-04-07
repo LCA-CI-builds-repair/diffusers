@@ -12,10 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import os
-from typing import Dict, Optional, Union
+from typing import Dict, Union
 
 import torch
 from huggingface_hub.utils import validate_hf_hub_args
+
+# Remove this line:
+# from typing import Optional
 from safetensors import safe_open
 
 from ..utils import (
