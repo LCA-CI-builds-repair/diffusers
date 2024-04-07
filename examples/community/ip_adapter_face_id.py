@@ -11,18 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-import inspect
-from typing import Any, Callable, Dict, List, Optional, Union
-from safetensors import safe_open
-
+from packaging import version
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from packaging import version
+import transformers
+from safetensors import safe_open
+from typing import Any, Callable, Dict, List, Optional, Union
+from diffusers.configuration_utils import FrozenDict
 from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
-from diffusers.configuration_utils import FrozenDict
+import inspect
 from diffusers.image_processor import VaeImageProcessor
 from diffusers.loaders import FromSingleFileMixin, IPAdapterMixin, LoraLoaderMixin, TextualInversionLoaderMixin
 from diffusers.models import AutoencoderKL, UNet2DConditionModel
