@@ -58,7 +58,7 @@ if is_torch_available():
     _import_structure["utils"] = ["AttnProcsLayers"]
 
     if is_transformers_available():
-        _import_structure["single_file"] = ["FromSingleFileMixin"]
+        _import_structure["single_file"] = ["FromSingleFileMixin"] <-- Add this line
         _import_structure["lora"] = ["LoraLoaderMixin", "StableDiffusionXLLoraLoaderMixin"]
         _import_structure["textual_inversion"] = ["TextualInversionLoaderMixin"]
         _import_structure["ip_adapter"] = ["IPAdapterMixin"]
