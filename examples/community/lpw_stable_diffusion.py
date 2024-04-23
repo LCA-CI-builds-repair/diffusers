@@ -8,8 +8,64 @@ import torch
 from packaging import version
 from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer
 
-from diffusers import DiffusionPipeline
-from diffusers.configuration_utils import FrozenDict
+from diffusers import DiffusionPip# Add necessary import statements
+import torch
+
+# Process prompts and weights
+prompt_tokens, prompt_weights = get_prompts_with_weights(pipe, prompt, max_length - 2)
+if uncond_prompt is not None:
+    if isinstance(uncond_prompt, str):
+        uncond_prompt = [uncond_prompt]
+    uncond_tokens, uncond_weights = get_prompts_with_weights(pipe, uncond_prompt, max_length - 2)
+else:
+    prompt_tokens = [token[1:-1] for token in pipe.tokenizer(prompt, max_length=max_length, truncation=True).input_ids]
+    prompt_weights = [[1.0] * len(token) for token in prompt_tokens]
+    if uncond_prompt is not None:
+        if isinstance(uncond_prompt, str):
+            uncond_prompt = [uncond_prompt]
+        uncond_tokens = [token[1:-1] for token in pipe.tokenizer(uncond_prompt, max_length=max_length, truncation=True).input_ids]
+        uncond_weights = [[1.0] * len(token) for token in uncond_tokens]
+
+# Calculate max length of tokens
+max_length = max([len(token) for token in prompt_tokens])
+if uncond_prompt is not None:
+    max_length = max(max_length, max([len(token) for token in uncond_tokens]))
+
+# Adjust max embeddings multiples
+max_embeddings_multiples = min(
+    max_embeddings_multiples,
+    (max_length - 1) // (pipe.tokenizer.model_max_length - 2) + 1,
+)
+max_embeddings_multiples = max(1, max_embeddings_multiples)
+max_length = (pipe.tokenizer.model_max_length - 2) * max_embeddings_multiples + 2
+
+# Pad tokens and weights
+bos = pipe.tokenizer.bos_token_id
+eos = pipe.tokenizer.eos_token_id
+pad = getattr(pipe.tokenizer, "pad_token_id", eos)
+prompt_tokens, prompt_weights = pad_tokens_and_weights(
+    prompt_tokens,
+    prompt_weights,
+    max_length,
+    bos,
+    eos,
+    pad,
+    no_boseos_middle=no_boseos_middle,
+    chunk_length=pipe.tokenizer.model_max_length,
+)
+prompt_tokens = torch.tensor(prompt_tokens, dtype=torch.long, device=pipe.device)
+if uncond_prompt is not None:
+    uncond_tokens, uncond_weights = pad_tokens_and_weights(
+        uncond_tokens,
+        uncond_weights,
+        max_length,
+        bos,
+        eos,
+        pad,
+        no_boseos_middle=no_boseos_middle,
+        chunk_length=pipe.tokenizer.model_max_length,
+    )
+    uncond_tokens = torch.tensor(uncond_tokens, dtype=torch.long, device=pipe.device)
 from diffusers.image_processor import VaeImageProcessor
 from diffusers.loaders import FromSingleFileMixin, LoraLoaderMixin, TextualInversionLoaderMixin
 from diffusers.models import AutoencoderKL, UNet2DConditionModel

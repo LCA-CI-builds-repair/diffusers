@@ -22,7 +22,40 @@ Convert the model:
 ```sh
 python scripts/convert_kandinsky_to_diffusers.py \
       --prior_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/prior_fp16.ckpt \
-      --clip_stat_path  /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/ViT-L-14_stats.th \
+      --clip_stat_path  /ho    original_block_idx = 0
+
+    diffusers_checkpoint.update(
+        resnet_to_diffusers_checkpoint(
+            checkpoint,
+            diffusers_resnet_prefix="mid_block.resnets.0",
+            resnet_prefix=f"middle_block.{original_block_idx}",
+        )
+    )
+
+    original_block_idx += 1
+
+    # Process optional block 1
+    if hasattr(model.mid_block, "attentions") and model.mid_block.attentions[0] is not None:
+        diffusers_checkpoint.update(
+            attention_to_diffusers_checkpoint(
+                checkpoint,
+                diffusers_attention_prefix="mid_block.attentions.0",
+                attention_prefix=f"middle_block.{original_block_idx}",
+                num_head_channels=num_head_channels,
+            )
+        )
+        original_block_idx += 1
+
+    # Process block 1 or block 2
+    diffusers_checkpoint.update(
+        resnet_to_diffusers_checkpoint(
+            checkpoint,
+            diffusers_resnet_prefix="mid_block.resnets.1",
+            resnet_prefix=f"middle_block.{original_block_idx}",
+        )
+    )
+
+    return diffusers_checkpointiT-L-14_stats.th \
       --text2img_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/decoder_fp16.ckpt \
       --inpaint_text2img_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/inpainting_fp16.ckpt \
       --movq_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/movq_final.ckpt \
