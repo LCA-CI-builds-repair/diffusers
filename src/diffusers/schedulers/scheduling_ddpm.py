@@ -1,6 +1,8 @@
 # Copyright 2023 UC Berkeley Team and The HuggingFace Team. All rights reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apache License, Version 2.0 (the    order = 1
+
+    @register_to_configicense");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #

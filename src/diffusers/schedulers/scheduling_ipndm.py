@@ -1,4 +1,5 @@
-# Copyright 2023 Zhejiang University Team and The HuggingFace Team. All rights reserved.
+# Copyright 2023 Zhejiang University Te
+    @register_to_config and The HuggingFace Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
