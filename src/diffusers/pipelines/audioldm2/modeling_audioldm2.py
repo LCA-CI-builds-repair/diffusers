@@ -1,4 +1,9 @@
-# Copyright 2023 The HuggingFace Team. All rights reserved.
+# Copyright 2023 The Hfrom ...loaders.single_file_mixin import FromSingleFileMixin
+from ...models.activations import get_activation
+from ...models.attention_processor import (
+    ADDED_KV_ATTENTION_PROCESSORS,
+    CROSS_ATTENTION_PROCESSORS,
+    AttentionProcessor,Face Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

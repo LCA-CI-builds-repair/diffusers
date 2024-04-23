@@ -1,4 +1,5 @@
-# Copyright 2023 The GLIGEN Authors and HuggingFace Team. All rights reserved.
+# Copyright 202from ...loaders.single_file_mixin import FromSingleFileMixin
+from ...models.modeling_utils import ModelMixin GLIGEN Authors and HuggingFace Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

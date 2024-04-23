@@ -1,4 +1,8 @@
-# Copyright 2023 The HuggingFace Team. All rights reserved.
+# Copyright 2023 Thfrom ...utils import is_torch_version
+from ...utils.accelerate_utils import apply_forward_hook
+from ..attention_processor import CROSS_ATTENTION_PROCESSORS, AttentionProcessor, AttnProcessor
+from ..modeling_outputs import AutoencoderKLOutput
+from ...loaders.single_file_mixin import FromSingleFileMixinggingFace Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

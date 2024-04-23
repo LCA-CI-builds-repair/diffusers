@@ -1,4 +1,5 @@
-from typing import Optional
+from typifrom ...loaders.single_file_mixin import FromSingleFileMixin
+from ...models import ModelMixinimport Optional
 
 import numpy as np
 import torch
