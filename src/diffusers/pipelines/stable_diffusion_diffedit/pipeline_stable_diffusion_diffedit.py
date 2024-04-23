@@ -27,7 +27,10 @@ from ...image_processor import VaeImageProcessor
 from ...loaders import LoraLoaderMixin, TextualInversionLoaderMixin
 from ...models import AutoencoderKL, UNet2DConditionModel
 from ...models.lora import adjust_lora_scale_text_encoder
-from ...schedulers import DDIMInverseScheduler, KarrasDiffusionSchedulers
+from ...schedulers import DDIMInverseScheduler, Karr                if num_reg_steps > 0:
+                    with torch.enable_grad():
+                        for _ in range(num_reg_steps):
+                            if lambda_auto_corr > 0:ffusionSchedulers
 from ...utils import (
     PIL_INTERPOLATION,
     USE_PEFT_BACKEND,

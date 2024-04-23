@@ -1,4 +1,4 @@
-import warnings
+ifrom diffusers import StableDiffusionInpaintPipeline as StableDiffusionInpaintPipeline  # noqa F401t warnings
 
 from diffusers import StableDiffusionInpaintPipeline as StableDiffusionInpaintPipeline  # noqa F401
 

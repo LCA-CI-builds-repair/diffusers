@@ -1,7 +1,12 @@
 # Copyright 2023 The HuggingFace Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
+# you may not use this file except in co            TODO(Patrick) - unused parameter.
+        addition_embed_type_num_heads (`int`, defaults to 64):
+            The number of heads to use for the `TextTimeEmbedding` layer.
+    """
+
+    _supports_gradient_checkpointing = Truece with the License.
 # You may obtain a copy of the License at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
