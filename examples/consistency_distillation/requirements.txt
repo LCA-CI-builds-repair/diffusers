@@ -1,4 +1,9 @@
-accelerate>=0.16.0
+atorchvision
+transformers>=4.25.1
+ftfy
+tensorboard
+Jinja2
+webdatasetate>=0.16.0
 torchvision
 transformers>=4.25.1
 ftfy
