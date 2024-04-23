@@ -22,7 +22,17 @@ Convert the model:
 ```sh
 python scripts/convert_kandinsky_to_diffusers.py \
       --prior_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/prior_fp16.ckpt \
-      --clip_stat_path  /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/ViT-L-14_stats.th \
+      --clip_stat_path  /home/yiyi_hugg# Import necessar# Import necessary modules
+import numpy as np
+import torch
+
+# Update diffusers checkpoint
+diffusers_checkpoint.update(modules
+import numpy as np
+import torch
+
+# Optional block 1
+if hasattr(model.mid_block, "attentions") and model.mid_block.attentions[0] is not None:ace_co/Kandinsky-2/checkpoints_Kandinsky_2.1/ViT-L-14_stats.th \
       --text2img_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/decoder_fp16.ckpt \
       --inpaint_text2img_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/inpainting_fp16.ckpt \
       --movq_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/movq_final.ckpt \
