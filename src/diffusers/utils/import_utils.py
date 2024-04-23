@@ -2,7 +2,53 @@
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# You may obtain import importlib_metadata
+imimport importlib_metadata
+import importlib.util
+
+try:
+    _compel_version = importlib_metadata.version("compel")
+    logger.debug(f"Successfully imported compel version {_compel_version}")
+    _compel_available = True
+except importlib_metadata.PackageNotFoundError:
+    _compel_available = False
+
+_ftfy_available = importlib.util.find_spec("ftfy") is not None
+try:
+    _ftfy_version = importlib_metadata.version("ftfy")
+    logger.debug(f"Successfully imported ftfy version {_ftfy_version}")
+    _ftfy_available = True
+except importlib_metadata.PackageNotFoundError:
+    _ftfy_available = False
+
+_bs4_available = importlib.util.find_spec("bs4") is not None
+try:
+    _bs4_version = importlib_metadata.version("beautifulsoup4")
+    logger.debug(f"Successfully imported beautifulsoup4 version {_bs4_version}")
+    _bs4_available = True
+except importlib_metadata.PackageNotFoundError:
+    _bs4_available = Falsetry:
+    _note_seq_version = importlib_metadata.version("note_seq")
+    logger.debug(f"Successfully imported note-seq version {_note_seq_version}")
+    _note_seq_available = True
+except importlib_metadata.PackageNotFoundError:
+    _note_seq_available = False
+
+_wandb_available = importlib.util.find_spec("wandb") is not None
+try:
+    _wandb_version = importlib_metadata.version("wandb")
+    logger.debug(f"Successfully imported wandb version {_wandb_version}")
+    _wandb_available = True
+except importlib_metadata.PackageNotFoundError:
+    _wandb_available = False
+
+_tensorboard_available = importlib.util.find_spec("tensorboard") is not None
+try:
+    _tensorboard_version = importlib_metadata.version("tensorboard")
+    logger.debug(f"Successfully imported tensorboard version {_tensorboard_version}")
+    _tensorboard_available = True
+except importlib_metadata.PackageNotFoundError:
+    _tensorboard_available = Falsee at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
