@@ -1,6 +1,9 @@
 from typing import TYPE_CHECKING
 
-from ..utils import DIFFUSERS_SLOW_IMPORT, _LazyModule, deprecate
+from ..utils import if is_torch_available():
+    _import_structure["unet"] = ["UNet2DConditionLoadersMixin"]
+    _import_structure["utils"] = ["AttnProcsLayers"]
+    _import_structure["torch"] = ["nn", "optim"]SERS_SLOW_IMPORT, _LazyModule, deprecate
 from ..utils.import_utils import is_peft_available, is_torch_available, is_transformers_available
 
 
