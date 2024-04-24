@@ -34,7 +34,13 @@ from .import_utils import (
     is_onnx_available,
     is_opencv_available,
     is_peft_available,
-    is_torch_available,
+    is_torch_import queue
+
+try:
+    results = output_queue.get(timeout=timeout)
+    output_queue.task_done()
+except queue.Empty:
+    results = Noneilable,
     is_torch_version,
     is_torchsde_available,
     is_transformers_available,

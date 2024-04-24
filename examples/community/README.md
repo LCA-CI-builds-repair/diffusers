@@ -3,7 +3,21 @@
 > **For more information about community pipelines, please have a look at [this issue](https://github.com/huggingface/diffusers/issues/841).**
 
 **Community** examples consist of both inference and training examples that have been added by the community.
-Please have a look at the following table to get an overview of all community examples. Click on the **Code Example** to get a copy-and-paste ready code example that you can try out.
+Please have a look at the following table to get an overview of all community examples. Click on the **Code Example*## Community Examples
+
+Here are some community-contributed examples to showcase the usage of our software:
+
+1. Example 1:
+   ```python
+   # Add your example code here
+   ```
+
+2. Example 2:
+   ```python
+   # Add another example code snippet here
+   ```
+
+Feel free to contribute more examples to help fellow developers! to get a copy-and-paste ready code example that you can try out.
 If a community doesn't work as expected, please open an issue and ping the author on it.
 
 | Example                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Code Example                                                                              | Colab                                                                                                                                                                                                              |                                                        Author |

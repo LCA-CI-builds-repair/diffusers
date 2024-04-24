@@ -1,4 +1,4 @@
-# Copyright 2023 The HuggingFace Team. All rights reserved.
+# Copyright 2023 The HuggingFfrom diffusers.models.lora.lora_utils import adjust_lora_scale_text_encoder, LoRALinearLayerce Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,19 @@
 
 import inspect
 from typing import Any, Callable, Dict, List, Optional, Union
-from safetensors import safe_open
-
-import torch
+from safetensors import             less than `1`).
+        prompt_embeds (`torch.FloatTensor`, *optional*):
+            Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
+            provided, text embeddings will be generated from `prompt` input argument.
+        negative_prompt_embeds (`torch.FloatTensor`, *optional*):
+            Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
+            weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
+            argument.
+        lora_scale (`float`, *optional*):
+            A LoRA scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
+        clip_skip (`int`, *optional*):
+            Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that
+            the output of the pre-final layer will be used for computing the prompt embeddings.ort torch
 import torch.nn as nn
 import torch.nn.functional as F
 from packaging import version

@@ -1,5 +1,9 @@
 # coding=utf-8
-# Copyright 2023 HuggingFace Inc.
+# Copyright# Test Unconditional Image Generation
+
+Here is an example code snip--num_epochs 1
+--gradient--ddpm_num_inference_steps 1accumulation_steps 1t to test unconditional image generation using the provided functionality:
+2023 HuggingFace Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

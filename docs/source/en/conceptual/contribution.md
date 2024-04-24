@@ -5,7 +5,7 @@ the License. You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+Unless required by applicable law or agreed to in writing, soft7. Consider your issue as a valuable addition to a comprehensive knowledge base rather than just a problem to be solved. Each submitted issue enriches the collective understanding and resources available to the community. By articulating your issue clearly and concisely, you not only facilitate the resolution process for maintainers but also enhance the community's comprehension of the library's functionality.are distributed under the License is distributed on
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 -->
