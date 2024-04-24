@@ -14,7 +14,12 @@
 import inspect
 import os
 from contextlib import nullcontext
-from typing import Callable, Dict, List, Optional, Union
+from typing import C    argument to `True` will raise an error.
+    adapter_name (`str`, *optional*):
+        Adapter name to be used for referencing the loaded adapter model. If not specified, it will use
+        `default_{i}` where i is the total number of adapters being loaded.
+"""
+low_cpu_mem_usage = low_cpu_mem_usage if low_cpu_mem_usage is not None else _LOW_CPU_MEM_USAGE_DEFAULTe, Dict, List, Optional, Union
 
 import safetensors
 import torch

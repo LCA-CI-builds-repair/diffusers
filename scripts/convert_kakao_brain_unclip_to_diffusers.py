@@ -17,7 +17,64 @@ Example - From the diffusers root directory:
 Download weights:
 ```sh
 $ wget https://arena.kakaocdn.net/brainrepo/models/karlo-public/v1.0.0.alpha/efdf6206d8ed593961593dc029a8affa/decoder-ckpt-step%3D01000000-of-01000000.ckpt
-$ wget https://arena.kakaocdn.net/brainrepo/models/karlo-public/v1.0.0.alpha/4226b831ae0279020d134281f3c31590/improved-sr-ckpt-step%3D1.2M.ckpt
+$ wget https://aoriginal_block_idx = 0
+
+diffusers_checkpoint.update(
+    resnet_to_diffusers_checkpoint(
+        checkpoint,
+        diffusers_resnet_prefix="mid_block.resnets.0",
+        resnet_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
+    )
+)
+
+original_block_idx += 1
+
+# optional block 1
+
+if hasattr(model.mid_block, "attentions") and model.mid_block.attentions[0] is not None:
+    diffusers_checkpoint.update(
+        attention_to_diffusers_checkpoint(
+            checkpoint,
+            diffusers_attention_prefix="mid_block.attentions.0",
+            attention_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
+            num_head_channels=num_head_channels,
+        )
+    )
+    original_block_idx += 1
+
+# block 1 or block 2
+
+diffusers_checkpoint.update(
+    resnet_to_diffusers_checkpoint(
+        checkpoint,
+        diffusers_resnet_prefix="mid_block.resnets.1",
+        resnet_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
+    )
+)
+
+return diffusers_checkpoint
+
+
+# <original>.output_blocks -> <diffusers>.up_blocks
+def unet_upblock_to_diffusers_checkpoint(
+    model, checkpoint, *, diffusers_up_block_idx, original_up_block_idx, original_unet_prefix, num_head_channels
+):
+    diffusers_checkpoint = {}
+
+    diffusers_resnet_prefix = f"up_blocks.{diffusers_up_block_idx}.resnets"
+    original_up_block_prefix = f"{original_unet_prefix}.output_blocks"
+
+    up_block = model.up_blocks[diffusers_up_block_idx]
+
+    num_resnets = len(up_block.resnets)
+
+    if up_block.upsamplers is None:
+        upsampler = False
+    else:
+        assert len(up_block.upsamplers) == 1
+        upsampler = True
+        # The upsample block is also a resnet
+        num_resnets += 1a/4226b831ae0279020d134281f3c31590/improved-sr-ckpt-step%3D1.2M.ckpt
 $ wget https://arena.kakaocdn.net/brainrepo/models/karlo-public/v1.0.0.alpha/85626483eaca9f581e2a78d31ff905ca/prior-ckpt-step%3D01000000-of-01000000.ckpt
 $ wget https://arena.kakaocdn.net/brainrepo/models/karlo-public/v1.0.0.alpha/0b62380a75e56f073e2844ab5199153d/ViT-L-14_stats.th
 ```

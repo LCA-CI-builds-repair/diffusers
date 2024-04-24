@@ -3,7 +3,18 @@ import unittest
 
 from parameterized import parameterized
 
-from diffusers import FlaxUNet2DConditionModel
+from diffusers import F        {"params": params},
+        latents,
+        jnp.array(timestep, dtype=jnp.int32),
+        encoder_hidden_states=encoder_hidden_states,
+    ).sample
+
+    assert sample.shape == latents.shape
+
+    output_slice = jnp.asarray(jax.device_get((sample[-1, -2:, -2:, :2].flatten())), dtype=jnp.float32)
+    expected_output_slice = jnp.array(expected_slice, dtype=jnp.float32)
+
+    # Found torch (float16) and flax (bfloat16) outputs to be within this tolerance, on the same hardwareditionModel
 from diffusers.utils import is_flax_available
 from diffusers.utils.testing_utils import load_hf_numpy, require_flax, slow
 

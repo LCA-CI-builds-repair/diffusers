@@ -2,7 +2,23 @@
 # Copyright 2023 HuggingFace Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
+# you may not use this file except in compliance    def test_stable_diffusion_model_editing_pndm(self):
+        device = "cpu"  # ensure determinism for the device-dependent torch.Generator
+        components = self.get_dummy_components()
+        components["scheduler"] = PNDMScheduler()
+        sd_pipe = StableDiffusionModelEditingPipeline(**components)
+        sd_pipe = sd_pipe.to(device)
+        sd_pipe.set_progress_bar_config(disable=None)
+
+        inputs = self.get_dummy_inputs(device)
+        # the pipeline does not expect pndm so test if it raises error.
+        with self.assertRaises(ValueError):
+            _ = sd_pipe(**inputs).images
+
+    def test_inference_batch_single_identical(self):
+        super().test_inference_batch_single_identical(expected_max_diff=5e-3)
+
+    def test_attention_slicing_forward_pass(self):
 # You may obtain a copy of the License at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0

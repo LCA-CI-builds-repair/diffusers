@@ -4,7 +4,27 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apach        assert images.shape[0] == batch_size * num_images_per_prompt
+
+    def test_float16_inference(self):
+        super().test_float16_inference(expected_max_diff=1e-1)
+
+    def test_save_load_local(self):
+        super().test_save_load_local(expected_max_difference=5e-3)
+
+    @unittest.skip("Key error is raised with accelerate")
+    def test_sequential_cpu_offload_forward_pass(self):
+        pass
+
+
+@nightly
+@require_torch_gpu
+class ShapEImg2ImgPipelineIntegrationTests(unittest.TestCase):
+    def tearDown(self):
+        # clean up the VRAM after each test
+        super().tearDown()
+        gc.collect()
+        torch.cuda.empty_cache()-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,

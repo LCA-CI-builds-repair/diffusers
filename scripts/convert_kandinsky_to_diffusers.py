@@ -22,7 +22,66 @@ Convert the model:
 ```sh
 python scripts/convert_kandinsky_to_diffusers.py \
       --prior_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/prior_fp16.ckpt \
-      --clip_stat_path  /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/ViT-L-14_stats.th \
+      --clip_stat_path  /hooriginal_block_idx = 0
+
+diffusers_checkpoint.update(
+    resnet_to_diffusers_checkpoint(
+        checkpoint,
+        diffusers_resnet_prefix="mid_block.resnets.0",
+        resnet_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
+    )
+)
+
+original_block_idx += 1
+
+# optional block 1
+
+if hasattr(model.mid_block, "attentions") and model.mid_block.attentions[0] is not None:
+    diffusers_checkpoint.update(
+        attention_to_diffusers_checkpoint(
+            checkpoint,
+            diffusers_attention_prefix="mid_block.attentions.0",
+            attention_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
+            num_head_channels=num_head_channels,
+        )
+    )
+    original_block_idx += 1
+
+# block 1 or block 2
+
+diffusers_checkpoint.update(
+    resnet_to_diffusers_checkpoint(
+        checkpoint,
+        diffusers_resnet_prefix="mid_block.resnets.1",
+        resnet_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
+    )
+)
+
+return diffusers_checkpoint
+
+
+# <original>.output_blocks -> <diffusers>.up_blocks
+def unet_upblock_to_diffusers_checkpoint(
+    model, checkpoint, *, diffusers_up_block_idx, original_up_block_idx, original_unet_prefix, num_head_channels
+):
+    diffusers_checkpoint = {}
+
+    diffusers_resnet_prefix = f"up_blocks.{diffusers_up_block_idx}.resnets"
+    original_up_block_prefix = f"{original_unet_prefix}.output_blocks"
+
+    up_block = model.up_blocks[diffusers_up_block_idx]
+
+    num_resnets = len(up_block.resnets)
+
+    if up_block.upsamplers is None:
+        upsampler = False
+    else:
+        assert len(up_block.upsamplers) == 1
+        upsampler = True
+        # The upsample block is also a resnet
+        num_resnets += 1
+
+    has_attentions = hasattr(up_block, "attentions")iT-L-14_stats.th \
       --text2img_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/decoder_fp16.ckpt \
       --inpaint_text2img_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/inpainting_fp16.ckpt \
       --movq_checkpoint_path /home/yiyi_huggingface_co/Kandinsky-2/checkpoints_Kandinsky_2.1/movq_final.ckpt \
