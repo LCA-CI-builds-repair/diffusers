@@ -2,9 +2,34 @@
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
+# You may obtain a copy of the Licenseimport importlib.util
+import importlib.metadata
+import logging
+
+logger = logging.getLogger(__name__)
+
+try:
+    _tensorboard_version = importlib_metadata.version("tensorboard")
+    logger.debug(f"Successfully imported tensorboard version {_tensorboard_version}")
+except importlib_metadata.PackageNotFoundError:
+    _tensorboard_available = False
+    logger.debug("Tensorboard not available.")
+
+_compel_available = importlib.util.find_spec("compel")
+try:
+    _compel_version = importlib_metadata.version("compel")
+    logger.debug(f"Successfully imported compel version {_compel_version}")
+except importlib_metadata.PackageNotFoundError:
+    _compel_available = False
+    logger.debug("Compel not available.")
+
+_ftfy_available = importlib.util.find_spec("ftfy") is not None
+try:
+    _ftfy_version = importlib_metadata.version("ftfy")
+    logger.debug(f"Successfully imported ftfy version {_ftfy_version}")
+except importlib_metadata.PackageNotFoundError:
+    _ftfy_available = False
+    logger.debug("FTFY not available.")w.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,

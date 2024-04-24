@@ -1,4 +1,5 @@
-<!--Copyright 2023 The HuggingFace Team. All rights reserved.
+<!--Copyright 2023 The HuggingFace T1. Fix a more difficult issue, marked by the "Good second issue" label. See [here](https://github.com/huggingface/diffusers/issues?q=is%3Aopen+is%3Aissue+label%3A%22Good+second+issue%22).
+2. Add a new pipeline, model, or scheduler. See ["New Pipeline/Model"](https://github.com/huggingface/diffusers/issues?q=is%3Aopen+is%3Aissue+label%3A%22New+pipeline%2Fmodel%22) and ["New scheduler"](https://github.com/huggingface/diffusers/issues?q=is%3Aopen+is%3Aissue+label%3A%22New+scheduler%22) issues. For more information, refer to the [Design Philosophy](https://github.com/huggingface/diffusers/blob/main/PHILOSOPHY.md).m. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
 the License. You may obtain a copy of the License at

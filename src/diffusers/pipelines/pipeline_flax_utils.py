@@ -10,7 +10,26 @@
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# WITHOUTloaded_sub_model, loaded_params = load_method(
+    loadable_folder,
+    from_pt=from_pt,
+    use_memory_efficient_attention=use_memory_efficient_attention,
+    split_head_dim=split_head_dim,
+    dtype=dtype,
+)
+params[name] = loaded_params
+
+elif is_transformers_available() and issubclass(class_obj, FlaxPreTrainedModel):
+    if from_pt:
+        # TODO(Suraj): Fix this in Transformers. We should be able to use `_do_init=False` here
+        loaded_sub_model = load_method(loadable_folder, from_pt=from_pt)
+        loaded_params = loaded_sub_model.params
+        del loaded_sub_model._params
+    else:
+        loaded_sub_model, loaded_params = load_method(loadable_folder, _do_init=False)
+    params[name] = loaded_params
+
+elif issubclass(class_obj, FlaxSchedulerMixin):DITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 

@@ -2,7 +2,80 @@
 # Copyright 2021 The HuggingFace Inc. team.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
+# you may not use this file except in complianceimport os
+
+def fetch_tests(PATH_TO_TESTS: str, PATH_TO_REPO: str) -> list:
+    tests = os.lisif diff_obj.a_path != diff_obj.b_path:
+    code_diff.extend([diff_obj.a_path, diff_obj.b_path])
+else:
+    # Otherwise, we check modifications are in code and not docstrings.
+    if diff_is_docstring_only(repo, commit, diff_obj.b_path):
+        print(f"Ignoring diff in {diff_obj.b_path} as it only concerns docstrings or comments.")
+    else:
+        code_diff.append(diff_obj.a_path)
+
+def diff_is_docstring_only(repo: Repo, commit: str, filename: str) -> bool:
+    """
+    Check if the diff is only in docstrings (or comments and whitespace) in a filename.
+
+    Args:
+        repo (`git.Repo`): A git repository.
+        commit (`str`): The commit reference for the diff.
+        filename (`str`): The filename to check for docstrings/comments diff.
+
+    Returns:
+        bool: True if the diff is onimport argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--output_file",
+    type=str,
+    default="test_list.txt",
+    help="Where to store the list of tests to run"
+)
+parser.add_argument(
+    "--json_output_file",
+    type=str,
+    default="test_map.json",
+    help="Where to store the tests to run in a dictionary format mapping test categories to test files"
+)
+parser.add_argument(
+    "--diff_with_last_commit",
+    action="store_true",
+    help="To fetch the tests between the current commit and the last commit"
+)
+parser.add_argument(
+    "--filter_tests",
+    action="store_true",
+    help="Will filter the pipeline/repo utils tests outside of the generated list of tests."
+)
+parser.add_argument(
+    "--print_dependencies_of",
+    type=str,
+    help="Will only print the tree of modules depending on the file passed.",
+    default=None
+)
+parser.add_argument(
+    "--commit_message",
+    type=str,
+    help="The commit message (which could contain a command to force all tests or skip the CI)."
+)False otherwise.
+    """H_TO_TESTS)
+    tests = [f"tests/{f}" for f in tests if "__pycache__" not in f]
+    tests = sorted([f for f in tests if (PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_")])
+
+    return tests
+
+
+def diff_is_docstring_only(repo: Repo, branching_point: str, filename: str) -> bool:
+    """
+    Check if the diff is only in docstrings (or comments and whitespace) in a filename.
+
+    Args:
+        repo (`git.Repo`): A git repository (for instance the Transformers repo).
+        branching_point (`str`): The commit reference of where to compare for the diff.
+        filename (`str`): The filename where we want to know if the diff is only in docstrings/comments.
+    """se.
 # You may obtain a copy of the License at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0

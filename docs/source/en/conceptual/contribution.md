@@ -1,4 +1,12 @@
-<!--Copyright 2023 The HuggingFace Team. All rights reserved.
+<!--Copyright 2023 The HuggingFace T1. Fix a more difficult issue, marked by the "Good second issue" label. See [here](https://github.com/huggingface/diffusers/issues?q=is%3Aopen+is%3Aissue+label%3A%22Good+second+issue%22).
+2. Add a new pipeline, model, or scheduler. See ["New Pipeline/Model"](https://gi#### Copied from Mechanism
+
+A u4. **Minimalistic**: Help the reader understand the issue quickly by being concise. Remove irrelevant code or information. When reporting a bug, provide a minimal code example to demonstrate the issue instead of the entire workflow. Use dummy data for reproduction.
+5. Add links: Provide links to relevant naming, methods, models, PRs, or issues for better understanding. More links enhance clarity.
+6. Formatting: Format code using Python syntax and error messages in plain code syntax. Refer to the [official GitHub formatting docs](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for guidance.
+7. Think of your issue as a contribution to public knowledge. Aim for a well-written entry in an encyclopedia, not just a ticket to be solved. Well-written issues help maintainers and the community understand library aspects better.e and important feature to understand when adding any pipeline, model, or scheduler code is the `# Copied from` mechanism. This mechanism is utilized throughout the Diffusers codebase to maintain code consistency and facilitate maintenance. By marking code with `# Copied from`, the marked code is required to be identical to the original code it was copied from. This practice simplifies updating and propagating changes across multiple files when running `make fix-copies`.
+
+For instance, in the code example below, [`~diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput`] represents the original code, and `AltDiffusionPipelineOutput` uses the `# Copied from` mechanism to copy it. The only difference is changing the class prefix from `Stable` to `Alt`.om/huggingface/diffusers/issues?q=is%3Aopen+is%3Aissue+label%3A%22New+pipeline%2Fmodel%22) and ["New scheduler"](https://github.com/huggingface/diffusers/issues?q=is%3Aopen+is%3Aissue+label%3A%22New+scheduler%22) issues. For more information, refer to the [Design Philosophy](https://github.com/huggingface/diffusers/blob/main/PHILOSOPHY.md).m. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
 the License. You may obtain a copy of the License at
