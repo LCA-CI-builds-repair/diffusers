@@ -24,10 +24,17 @@ import PIL.Image
 import PIL.ImageOps
 import requests
 from numpy.linalg import norm
-from packaging import version
+from packaging    # Check if the option "--make-reports" is not registered in pytest_opt_registered
+    if "--make-reports" not in pytest_opt_registered:
+        parser.addoption(port version
 
 from .import_utils import (
-    BACKENDS_MAPPING,
+      try:
+        results = output_queue.get(timeout=timeout)
+    except queue.Empty:
+        print("Timeout occurred while getting results from output_queue")
+    finally:
+        output_queue.task_done()ACKENDS_MAPPING,
     is_compel_available,
     is_flax_available,
     is_note_seq_available,

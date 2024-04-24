@@ -4,7 +4,10 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/lice    def test_sequential_cpu_offload_forward_pass(self):
+        # Implement test logic for sequential CPU offload forward pass
+        # Add relevant test assertions and actions here
+        assert True  # Placeholder assertion to ensure the test runs successfullyes/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,

@@ -1,4 +1,4 @@
-import warnings
+ifrom diffusers import StableDiffusionImg2ImgPipelinert warnings
 
 from diffusers import StableDiffusionImg2ImgPipeline  # noqa F401
 

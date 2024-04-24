@@ -1,7 +1,8 @@
 # coding=utf-8
 # Copyright 2023 The HuggingFace Inc. team.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apach    # CI will set this value to True
+    if os.environ.get("DIFFUSERS_IS_CI", "").upper() == "TRUE":License, Version 2.0 (the "L                f"There was a problem when trying to move your cache:\n\n{trace}\n{e.__class__.__name__}: {e}\n\nPlease "cense");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
