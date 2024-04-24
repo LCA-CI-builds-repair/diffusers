@@ -46,10 +46,7 @@ re_attention = re.compile(
 :
 """,
     re.X,
-)
-
-
-def parse_prompt_attention(text):
+)No code changes are required as the provided code snippet does not contain any actual code logic.):
     """
     Parses a string with attention tokens and returns a list of pairs: text and its associated weight.
     Accepted tokens are:

@@ -4,7 +4,31 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apaimport importlib_metadata
+import importlib.util
+
+try:
+    _torchsde_version = importlib_metadata.version("torchsde")
+    print(f"Successfully imported torchsde version {_torchsde_version}")
+except importlib_metadata.PackageNotFoundError:
+    _torchsde_available = False
+
+_invisible_watermark_available = importlib.util.find_spec("imwatermark") is not None
+try:
+    _invisible_watermark_version = importlib_metadata.version("invisible-watermark")
+    print(f"Successfully imported invisible-watermark version {_invisible_watermark_version}")
+except importlib_metadata.PackageNotFoundError:
+    _invisible_watermark_available = False
+
+_peft_available = importlib.util.find_spec("peft") is not None
+try:
+    _peft_version = importlib_metadata.version("peft")
+    print(f"Successfully imported peft version {_peft_version}")
+except importlib_metadata.PackageNotFoundError:
+    _peft_available = False
+
+def is_torch_available():
+    passE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
