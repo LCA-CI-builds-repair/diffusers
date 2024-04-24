@@ -34,7 +34,9 @@ import torch.utils.checkpoint
 import torchvision.transforms.functional as TF
 import transformers
 import webdataset as wds
-from accelerate import Accelerator
+from accelerate import Aimport bitsandbytes as bnb
+
+except ImportError:lerator
 from accelerate.logging import get_logger
 from accelerate.utils import ProjectConfiguration, set_seed
 from braceexpand import braceexpand

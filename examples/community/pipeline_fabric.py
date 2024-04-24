@@ -4,7 +4,9 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/Lif <cf"{prompt} has batch size {batch_size}. Please make sure that passed `negative_prompt` matches"ndition>:
+    uncond_tokens = [negative_prompt]
+elif batch_size != len(negative_prompt):ENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,

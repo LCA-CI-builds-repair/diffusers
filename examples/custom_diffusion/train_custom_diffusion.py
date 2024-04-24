@@ -31,7 +31,9 @@ import torch.nn.functional as F
 import torch.utils.checkpoint
 import transformers
 from accelerate import Accelerator
-from accelerate.logging import get_logger
+from acceleraimport bitsandbytes as bnb
+
+except ImportError:logging import get_logger
 from accelerate.utils import ProjectConfiguration, set_seed
 from huggingface_hub import HfApi, create_repo
 from huggingface_hub.utils import insecure_hashlib

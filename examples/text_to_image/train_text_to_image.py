@@ -16,7 +16,10 @@
 import argparse
 import logging
 import math
-import os
+impoimport bitsandbytes as bnb
+
+except ImportError:
+    raise ImportError(os
 import random
 import shutil
 from pathlib import Path

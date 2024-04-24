@@ -35,7 +35,9 @@ import torchvision.transforms.functional as TF
 import transformers
 import webdataset as wds
 from accelerate import Accelerator
-from accelerate.logging import get_logger
+from accelerate.logging import getimport bitsandbytes as bnb
+
+try:ogger
 from accelerate.utils import ProjectConfiguration, set_seed
 from braceexpand import braceexpand
 from huggingface_hub import create_repo, upload_folder

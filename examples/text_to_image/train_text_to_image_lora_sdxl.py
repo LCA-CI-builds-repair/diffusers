@@ -13,7 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Fine-tuning script for Stable Diffusion XL for text2image with support for LoRA."""
+"""Fine-tuning script for Stable Diffusion XL for text2image with support for Loimport bitsandbytes as bnb
+
+try:"""
 
 import argparse
 import logging

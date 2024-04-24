@@ -1,5 +1,10 @@
 import inspect
-import re
+imfrom diffusers.pipefrom diffusers.utils import PIL_INTERPOLATION
+
+except ImportError:nes.onnx_utils import ORT_TO_NP_TYPE
+
+except ImportError:
+    ORT_TO_NP_TYPE = {t re
 from typing import Callable, List, Optional, Union
 
 import numpy as np
