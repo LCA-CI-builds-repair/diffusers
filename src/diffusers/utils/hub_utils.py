@@ -1,7 +1,10 @@
 # coding=utf-8
 # Copyright 2023 The HuggingFace Inc. team.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apachimport os
+
+# CI will set this value to True
+if os.environ.get("DIFFUSERS_IS_CI", "").upper() in ENV_VARS_TRUE_VALUES:License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #

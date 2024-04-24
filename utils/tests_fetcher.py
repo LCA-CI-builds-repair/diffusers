@@ -2,7 +2,11 @@
 # Copyright 2021 The HuggingFace Inc. team.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
+# you may not use this file except in compliance     tests = [f"tests/{f}" for f in tests if "__pycache__" not in f]
+    tests = sorted([f for f in tests if (PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_")])
+    tests = [f for f in tests if (PATH_TO_REPO / f).exists()]
+
+    return teststhe License.
 # You may obtain a copy of the License at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0

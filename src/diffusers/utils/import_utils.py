@@ -2,9 +2,65 @@
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
+# You except except ModuleNotFoundError:
+    _k_diffusion_available = False
+
+_note_seq_available = importlib.util.find_spec("note_seq") is not None
+try:
+    _note_seq_version = importlib_metadata.version("note_seq")
+    logger.debug(f"Successfully imported note-seq version {_note_seq_version}")
+except ModuleNotFoundError:
+    _note_seq_available = False
+
+_wandb_available = importlib.util.find_spec("wandb") is not None
+try:
+    _wandb_version = importlib_metadata.version("wandb")
+    logger.debug(f"Successfully imported wandb version {_wandb_version}")
+except ModuleNotFoundError:
+    _wandb_available = False
+
+_tensorboard_available = importlib.util.find_spec("tensorboard")
+try:
+    _tensorboard_version = importlib_metadata.version("tensorboard")
+    logger.debug(f"Successfully imported tensorboard version {_tensorboard_version}")
+except ModuleNotFoundError:
+    _tensorboard_available = False
+
+_compel_available = importlib.util.find_spec("compel")
+try:
+    _compel_version = importlib_metadata.version("compel")
+    logger.debug(f"Successfully imported compel version {_compel_version}")
+except ModuleNotFoundError:
+    _compel_available = False
+
+_ftfy_available = importlib.util.find_spec("ftfy") is not None
+try:
+    _ftfy_version = importlib_metadata.version("ftfy")
+    logger.debug(f"Successfully imported ftfy version {_ftfy_version}")
+except ModuleNotFoundError:
+    _ftfy_available = False
+
+_bs4_available = importlib.util.find_spec("bs4") is not None
+try:
+    # importlib metadata under different name
+    _bs4_version = importlib_metadata.version("beautifulsoup4")
+    logger.debug(f"Successfully imported ftfy version {_bs4_version}")
+except ModuleNotFoundError:
+    _bs4_available = False
+
+_torchsde_available = importlib.util.find_spec("torchsde") is not None
+try:
+    _torchsde_version = importlib_metadata.version("torchsde")
+    logger.debug(f"Successfully imported torchsde version {_torchsde_version}")
+except ModuleNotFoundError:
+    _torchsde_available = False
+
+_invisible_watermark_available = importlib.util.find_spec("imwatermark") is not None
+try:
+    _invisible_watermark_version = importlib_metadata.version("invisible-watermark")
+    logger.debug(f"Successfully imported invisible-watermark version {_invisible_watermark_version}")
+except ModuleNotFoundError:
+    _invisible_watermark_available = False http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,

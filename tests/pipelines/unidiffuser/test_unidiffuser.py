@@ -31,8 +31,7 @@ from diffusers.utils.testing_utils import (
     run_test_in_subprocess,
     torch_device,
 )
-from diffusers.utils.torch_utils import randn_tensor
-
+from diffusers.utils.torch_utils import randn_tensor    @require_torch(2)
 from ..pipeline_params import (
     IMAGE_TO_IMAGE_IMAGE_PARAMS,
     TEXT_GUIDED_IMAGE_VARIATION_BATCH_PARAMS,
