@@ -8,7 +8,31 @@
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
+# distributed under the Licefrom diffusers.models.lora import LoRAAttnProcessor, AttnProcsLayers
+
+prior.to(accelerator.device, dtype=weight_dtype)
+image_encoder.to(accelerator.device, dtype=weight_dtype)
+text_encoder.to(accelerator.device, dtype=weight_dtype)
+lora_attn_procs = {}
+for name in prior.attn_processors.keys():
+    lora_attn_procs[name] = LoRAAttnProcessor(hidden_size=2048, rank=args.rank)
+
+prior.set_attn_processor(lora_attn_procs)
+lora_layers = AttnProcsLayers(prior.attn_processors)
+
+if args.allow_tf32:
+    torch.backends.cuda.matmul.allow_tf32 = True
+
+if args.use_8bit_adam:
+    try:
+        import bitsandbytes as bnb
+    except ImportError:
+        raise ImportError(
+            "Please install bitsandbytes to use 8-bit Adam. You can do so by running `pip install bitsandbytes`"
+        )
+
+    optimizer_cls = bnb.optim.AdamW8bit
+else:n "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.

@@ -7,7 +7,67 @@ from .utils import (
     OptionalDependencyNotAvailable,
     _LazyModule,
     is_flax_available,
-    is_k_diffusion_available,
+ from ...utils.dependencies import is_torch_available, is_transformers_available
+
+_import_structure["schedulers"].extend(["DPMSolverSDEScheduler"])
+
+try:
+    if not (isfrom ...utils.dependencies import is_transformers_avaifrom ...utils.dependencies import is_note_seq_available
+from typing import TYPE_CHECKING
+
+_import_structure["pipelines"].extend(
+    [
+        "FlaxStableDiffusionControlNetPipeline",
+        "FlaxStableDiffusionImg2ImgPipeline",
+        "FlaxStableDiffusionInpaintPipeline",
+        "FlaxStableDiffusionPipeline",
+        "FlaxStableDiffusionXLPipeline",
+    ]
+)
+
+try:
+    if not (is_note_seq_available()):
+        raise OptionalDependencyNotAvailable()
+except OptionalDependencyNotAvailable:
+    from .utils import dummy_note_seq_objects  # noqa F403
+
+    _import_structure["utils"]["dummy_note_seq_objects"] = [
+        name for name in dir(dummy_note_seq_objects) if not name.startswith("_")
+    ]
+
+if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
+    from .configuration_utils import ConfigMixinote_seq_available, is_flax_available
+
+_import_structure["pipelines"].extend(["AudioDiffusionPipeline", "Mel"])
+
+try:
+    if not (is_transformers_available() and is_torch_available() and is_note_seq_available()):
+        raise OptionalDependencyNotAvailable()
+except OptionalDependencyNotAvailable:
+    from .utils import dummy_transformers_and_torch_and_note_seq_objects  # noqa F403
+
+    _import_structure["utils"]["dummy_transformers_and_torch_and_note_seq_objects"] = [
+        name for name in dir(dummy_transformers_and_torch_and_note_seq_objects) if not name.startswith("_")
+    ]
+else:
+    _import_structure["pipelines"].extend(["SpectrogramDiffusionPipeline"])
+
+try:
+    if not is_flax_available():
+        raise OptionalDependencyNotAvailable()
+except OptionalDependencyNotAvailable:
+    from .utils import dummy_flax_objects  # noqa F403
+
+    _import_structure["utils"]["dummy_flax_objects"] = [
+        name for name in dir(dummy_flax_objects) if not name.startswith("_")
+    ]transformers_available()):
+        raise OptionalDependencyNotAvailable()
+except OptionalDependencyNotAvailable:
+    from .utils import dummy_torch_and_transformers_objects  # noqa F403
+
+    _import_structure["utils"]["dummy_torch_and_transformers_objects"] = [
+        name for name in dir(dummy_torch_and_transformers_objects) if not name.startswith("_")
+    ]fusion_available,
     is_librosa_available,
     is_note_seq_available,
     is_onnx_available,

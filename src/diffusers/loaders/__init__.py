@@ -1,6 +1,16 @@
 from typing import TYPE_CHECKING
 
-from ..utils import DIFFUSERS_SLOW_IMPORT, _LazyModule, deprecate
+from ..utils import DIFFUSERS_SLOW_if is_torch_available():
+    from .unet import UNet2DConditionLoadersMixin
+    from .utils import AttnProcsLayers
+
+    if is_transformers_available():
+        from .ip_adapter import IPAdapterMixin
+        from .lora import LoraLoaderMixin, StableDiffusionXLLoraLoaderMixin
+        from .single_file import FromSingleFileMixin
+        from .textual_inversion import TextualInversionLoaderMixin
+
+from .peft import PeftAdapterMixinyModule, deprecate
 from ..utils.import_utils import is_peft_available, is_torch_available, is_transformers_available
 
 

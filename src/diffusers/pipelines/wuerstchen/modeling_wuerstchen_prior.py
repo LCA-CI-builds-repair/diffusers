@@ -1,4 +1,21 @@
-# Copyright (c) 2023 Dominic Rampas MIT License
+# Copyright (c) from typing import Dict, Union
+
+import torch
+import torch.nn as nn
+
+from ...configuration_utils import ConfigMixin, register_to_config
+from ...loaders import PeftAdapterMixin, UNet2DConditionLoadersMixin
+from ...models.attention_processor import (
+    ADDED_KV_ATTENTION_PROCESSORS,
+    CROSS_ATTENTION_PROCESSORS,
+    AttentionProcessor,
+    AttnAddedKVProcessor,
+    AttnProcessor,
+)
+from ...models.lora import LoRACompatibleConv, LoRACompatibleLinear
+from ...models.modeling_utils import ModelMixin
+from ...utils import USE_PEFT_BACKEND, is_torch_version
+from .modeling_wuerstchen_common import AttnBlock, ResBlock, TimestepBlock, WuerstchenLayerNorm MIT License
 # Copyright 2023 The HuggingFace Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

@@ -1,7 +1,26 @@
 #!/usr/bin/env python3
 
-# coding=utf-8
-# Copyright 2023 The HuggingFace Inc. team.
+# codimport platform
+
+print("OS architecture:", platform.machine())
+
+try:
+    import torch
+
+    print("Torch version:", torch.__version__)
+    print("Cuda available:", torch.cuda.is_available())
+    print("Cuda version:", torch.version.cuda)
+    print("CuDNN version:", torch.backends.cudnn.version())
+    print("Number of GPUs available:", torch.cuda.device_count())
+except ImportError as e:
+    print("Error importing torch:", e)
+
+try:
+    import transformers
+
+    print("Transformers version:", transformers.__version__)
+except ImportError as e:
+    print("Error importing transformers:", e)ht 2023 The HuggingFace Inc. team.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

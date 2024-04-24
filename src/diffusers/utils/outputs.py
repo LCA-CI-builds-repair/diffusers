@@ -1,6 +1,29 @@
 # Copyright 2023 The HuggingFace Team. All rights reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apachclass Outputs(dict):
+    def __delitem__(self, *args, **kwargs):
+        raise Exception(f"You cannot use `__delitem__` on a {self.__class__.__name__} instance.")
+
+    def setdefault(self, *args, **kwargs):
+        raise Exception(f"You cannot use `setdefault` on a {self.__class__.__name__} instance.")
+
+    def pop(self, *args, **kwargs):
+        raise Exception(f"You cannot use `pop` on a {self.__class__.__name__} instance.")
+
+    def update(self, *args, **kwargs):
+        raise Exception(f"You cannot use `update` on a {self.__class__.__name__} instance.")
+
+    def __getitem__(self, k: Any) -> Any:
+        if isinstance(k, str):
+            inner_dict = dict(self.items())
+            return inner_dict[k]
+        else:
+            return self.to_tuple()[k]
+
+    def __setattr__(self, name: Any, value: Any) -> None:
+        if name in self.keys() and value is not None:
+            # Don't call self.__setitem__ to avoid recursion errors
+            super().__setitem__(name, value) (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #

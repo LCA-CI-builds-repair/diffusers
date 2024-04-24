@@ -1,6 +1,52 @@
-import inspect
-import re
-from typing import Callable, List, Optional, Union
+iimport re
+from typing import Cimport PIL
+from packaging import version
+
+try:
+    from diffusers.utils import PIL_INTERPOLATION
+except ImportError:
+    if version.parse(PIL.__version__).base_version >= version.parse("9.1.0"):
+        PIL_INTERPOLATION = {
+            "linear": PIL.Image.Resampling.BILINEAR,
+            "bilinear": PIL.Image.Resampling.BILINEAR,
+            "bicubic": PIL.Image.Resampling.BICUBIC,
+            "lanczos": PIL.Image.Resampling.LANCZOS,
+            "nearest": PIL.Image.Resampling.NEAREST,
+        }
+    else:
+        PIL_INTERPOLATION = {
+            "linear": PIL.Image.LINEAR,
+            "bilinear": PIL.Image.BILINEAR,
+            "bicubic": PIL.Image.BICUBIC,
+            "lanczos": PIL.Image.LANCZOS,
+            "nearest": PIL.Image.NEAREST,
+        }onal, Union
+
+import numpy as np
+import PIL.Image
+import torch
+from packaging import version
+from transformers import CLIPImageProcessor, CLIPTokenizer
+
+import diffusers
+from diffusers import OnnxRuntimeModel, OnnxStableDiffusionPipeline, SchedulerMixin
+from diffusers.pipelines.stable_diffusion import StableDiffusionPipelineOutput
+from diffusers.utils import logging
+
+ORT_TO_NP_TYPE = {
+    "tensor(bool)": np.bool_,
+    "tensor(int8)": np.int8,
+    "tensor(uint8)": np.uint8,
+    "tensor(int16)": np.int16,
+    "tensor(uint16)": np.uint16,
+    "tensor(int32)": np.int32,
+    "tensor(uint32)": np.uint32,
+    "tensor(int64)": np.int64,
+    "tensor(uint64)": np.uint64,
+    "tensor(float16)": np.float16,
+    "tensor(float)": np.float32,
+    "tensor(double)": np.float64,
+}ing import Callable, List, Optional, Union
 
 import numpy as np
 import PIL.Image

@@ -1,6 +1,43 @@
 # coding=utf-8
-# Copyright 2023 The HuggingFace Inc. team.
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright 2import re
+from collections import OrderedDict
+
+from huggingface_hub import create_repo, hf_hub_download
+from huggingface_hub.utils import (
+    EntryNotFoundError,
+    RepositoryNotFoundError,
+    RevisionNotFoundError,
+    validate_hf_hub_args,
+)
+from requests import HTTPError
+
+from . import __version__
+from .utils import (
+    HUGGINGFACE_CO_RESOLVE_ENDPOINT,
+    DummyObject,
+    deprecate,
+    extract_commit_hash,
+    http_user_agent,
+    logging,
+)
+
+
+logger = logging.get_logger(__name__)
+
+_re_configuration_file = re.compile(r"config\.(.*)\.json")
+
+
+class FrozenDict(OrderedDict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for key, value in self.items():
+            setattr(self, key, value)
+
+        self.__frozen = True
+
+    def __delitem__(self, *args, **kwargs):
+        raise NotImplementedError("Deleting items from a FrozenDict is not allowed.")pyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
