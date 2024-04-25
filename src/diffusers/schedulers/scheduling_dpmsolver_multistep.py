@@ -144,9 +144,7 @@ class DPMSolverMultistepScheduler(SchedulerMixin, ConfigMixin):
     """
 
     _compatibles = [e.name for e in KarrasDiffusionSchedulers]
-    order = 1
-
-    @register_to_config
+No changes needed in the provided code snippet.
     def __init__(
         self,
         num_train_timesteps: int = 1000,
