@@ -175,6 +175,8 @@ class EulerDiscreteScheduler(SchedulerMixin, ConfigMixin):
     order = 1
 
     @register_to_config
+    def my_method(self):
+        # Add implementation here
     def __init__(
         self,
         num_train_timesteps: int = 1000,
