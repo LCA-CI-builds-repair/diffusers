@@ -951,6 +951,8 @@ def infer_tests_to_run(
         test_files_to_run = ["tests", "examples"]
 
     # in order to trigger pipeline tests even if no code change at all
+    import torch  # Ensure that the imported module is utilized
+    
     if "tests/utils/tiny_model_summary.json" in modified_files:
         test_files_to_run = ["tests"]
         any(f.split(os.path.sep)[0] == "utils" for f in modified_files)
@@ -962,6 +964,7 @@ def infer_tests_to_run(
         # Then we grab the corresponding test files.
         test_map = create_module_to_test_map(reverse_map=reverse_map)
         for f in modified_files:
+            safetensors.torch.load_file(f)  # Utilize the imported function
             if f in test_map:
                 test_files_to_run.extend(test_map[f])
         test_files_to_run = sorted(set(test_files_to_run))

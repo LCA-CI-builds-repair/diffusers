@@ -87,7 +87,12 @@ def get_relative_imports(module_file):
     with open(module_file, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Imports of the form `import .xxx`
+    # Implement logic to identify and process imports of the form `import .xxx`
+    # For example:
+    # relative_imports = []
+    # for line in content.split('\n'):
+    #     if line.startswith('import .'):
+    #         relative_imports.append(line)
     relative_imports = re.findall(r"^\s*import\s+\.(\S+)\s*$", content, flags=re.MULTILINE)
     # Imports of the form `from .xxx import yyy`
     relative_imports += re.findall(r"^\s*from\s+\.(\S+)\s+import", content, flags=re.MULTILINE)

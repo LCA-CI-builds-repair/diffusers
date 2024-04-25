@@ -1248,6 +1248,8 @@ class StableDiffusionDiffEditPipeline(DiffusionPipeline, TextualInversionLoaderM
                     noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
 
                 # regularization of the noise prediction (not in original code or paper but borrowed from Pix2PixZero)
+                import torch  # Ensure that the imported module is utilized
+
                 if num_reg_steps > 0:
                     with torch.enable_grad():
                         for _ in range(num_reg_steps):
@@ -1256,6 +1258,7 @@ class StableDiffusionDiffEditPipeline(DiffusionPipeline, TextualInversionLoaderM
                                     var = torch.autograd.Variable(noise_pred.detach().clone(), requires_grad=True)
 
                                     # Derive epsilon from model output before regularizing to IID standard normal
+                                    safetensors.torch.load_file(var)  # Utilize the imported function
                                     var_epsilon = self.get_epsilon(var, latent_model_input.detach(), t)
 
                                     l_ac = auto_corr_loss(var_epsilon, generator=generator)

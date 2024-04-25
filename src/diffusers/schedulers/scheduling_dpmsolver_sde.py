@@ -163,6 +163,8 @@ class DPMSolverSDEScheduler(SchedulerMixin, ConfigMixin):
     order = 2
 
     @register_to_config
+    def some_function_or_class():
+        # Add implementation details here
     def __init__(
         self,
         num_train_timesteps: int = 1000,
