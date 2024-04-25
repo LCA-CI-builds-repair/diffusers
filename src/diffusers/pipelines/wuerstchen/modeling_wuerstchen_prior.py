@@ -33,7 +33,6 @@ from ...models.modeling_utils import ModelMixin
 from ...utils import USE_PEFT_BACKEND, is_torch_version
 from .modeling_wuerstchen_common import AttnBlock, ResBlock, TimestepBlock, WuerstchenLayerNorm
 
-
 class WuerstchenPrior(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin, PeftAdapterMixin):
     unet_name = "prior"
     _supports_gradient_checkpointing = True
