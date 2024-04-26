@@ -437,7 +437,9 @@ else:
 
 if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
     from .configuration_utils import ConfigMixin
-
+class Diffuser:
+    def __init__(self, name):
+        self.name = name
     try:
         if not is_onnx_available():
             raise OptionalDependencyNotAvailable()
