@@ -44,9 +44,18 @@ logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
 
 class StableDiffusionControlNetXSPipeline(
-    DiffusionPipeline, TextualInversionLoaderMixin, LoraLoaderMixin, FromSingleFileMixin
-):
-    r"""
+class ClassName:
+    def __init__(self, attribute1, attribute2):
+        self.attribute1 = attribute1
+        self.attribute2 = attribute2
+
+    def method1(self):
+        # Add functionality here
+        pass
+
+    def method2(self):
+        # Add functionality here
+        pass
     Pipeline for text-to-image generation using Stable Diffusion with ControlNet-XS guidance.
 
     This model inherits from [`DiffusionPipeline`]. Check the superclass documentation for the generic methods

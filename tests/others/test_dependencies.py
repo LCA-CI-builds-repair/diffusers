@@ -15,7 +15,7 @@
 import inspect
 import unittest
 from importlib import import_module
-
+import inspect
 
 class DependencyTester(unittest.TestCase):
     def test_diffusers_import(self):

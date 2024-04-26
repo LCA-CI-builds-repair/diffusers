@@ -184,7 +184,6 @@ class EDICTPipeline(DiffusionPipeline):
                 coupled_latents[k] = model_input
 
         return coupled_latents
-
     @torch.no_grad()
     def __call__(
         self,
@@ -201,11 +200,10 @@ class EDICTPipeline(DiffusionPipeline):
         do_classifier_free_guidance = guidance_scale > 1.0
 
         image = self.image_processor.preprocess(image)
+        image = self.image_processor.preprocess(image)
 
         base_embeds = self._encode_prompt(base_prompt, negative_prompt, do_classifier_free_guidance)
         target_embeds = self._encode_prompt(target_prompt, negative_prompt, do_classifier_free_guidance)
-
-        self.scheduler.set_timesteps(num_inference_steps, self.device)
 
         t_limit = num_inference_steps - int(num_inference_steps * strength)
         fwd_timesteps = self.scheduler.timesteps[t_limit:]

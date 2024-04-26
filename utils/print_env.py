@@ -43,6 +43,8 @@ except ImportError:
 try:
     import transformers
 
-    print("transformers version:", transformers.__version__)
-except ImportError:
+    try:
+        print("transformers version:", transformers.__version__)
+    except ImportError:
+        pass
     print("transformers version:", None)

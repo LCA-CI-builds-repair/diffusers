@@ -33,16 +33,21 @@ except ImportError:
     }
 
 try:
-    from diffusers.utils import PIL_INTERPOLATION
+from diffusers.utils import PIL_INTERPOLATION
+
+try:
+    import PIL
 except ImportError:
-    if version.parse(version.parse(PIL.__version__).base_version) >= version.parse("9.1.0"):
-        PIL_INTERPOLATION = {
-            "linear": PIL.Image.Resampling.BILINEAR,
-            "bilinear": PIL.Image.Resampling.BILINEAR,
-            "bicubic": PIL.Image.Resampling.BICUBIC,
-            "lanczos": PIL.Image.Resampling.LANCZOS,
-            "nearest": PIL.Image.Resampling.NEAREST,
-        }
+    pass
+
+if version.parse(PIL.__version__).base_version >= version.parse("9.1.0"):
+    PIL_INTERPOLATION = {
+        "linear": PIL.Image.Resampling.BILINEAR,
+        "bilinear": PIL.Image.Resampling.BILINEAR,
+        "bicubic": PIL.Image.Resampling.BICUBIC,
+        "lanczos": PIL.Image.Resampling.LANCZOS,
+        "nearest": PIL.Image.Resampling.NEAREST,
+    }
     else:
         PIL_INTERPOLATION = {
             "linear": PIL.Image.LINEAR,

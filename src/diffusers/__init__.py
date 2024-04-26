@@ -57,10 +57,14 @@ except OptionalDependencyNotAvailable:
     from .utils import dummy_onnx_objects  # noqa F403
 
     _import_structure["utils.dummy_onnx_objects"] = [
+try:
+    _import_structure["pipelines"].extend([
         name for name in dir(dummy_onnx_objects) if not name.startswith("_")
-    ]
+    ])
+except ImportError:
+    pass
 
-else:
+if not _import_structure["pipelines"]:
     _import_structure["pipelines"].extend(["OnnxRuntimeModel"])
 
 try:
@@ -173,17 +177,16 @@ except OptionalDependencyNotAvailable:
     ]
 
 else:
-    _import_structure["schedulers"].extend(["LMSDiscreteScheduler"])
-
 try:
-    if not (is_torch_available() and is_torchsde_available()):
-        raise OptionalDependencyNotAvailable()
+    raise OptionalDependencyNotAvailable()
 except OptionalDependencyNotAvailable:
     from .utils import dummy_torch_and_torchsde_objects  # noqa F403
 
     _import_structure["utils.dummy_torch_and_torchsde_objects"] = [
         name for name in dir(dummy_torch_and_torchsde_objects) if not name.startswith("_")
     ]
+else:
+    _import_structure["schedulers"].extend(["DPMSolverSDEScheduler"])
 
 else:
     _import_structure["schedulers"].extend(["DPMSolverSDEScheduler"])
@@ -360,10 +363,6 @@ except OptionalDependencyNotAvailable:
     from .utils import dummy_transformers_and_torch_and_note_seq_objects  # noqa F403
 
     _import_structure["utils.dummy_transformers_and_torch_and_note_seq_objects"] = [
-        name for name in dir(dummy_transformers_and_torch_and_note_seq_objects) if not name.startswith("_")
-    ]
-
-
 else:
     _import_structure["pipelines"].extend(["SpectrogramDiffusionPipeline"])
 
@@ -372,6 +371,10 @@ try:
         raise OptionalDependencyNotAvailable()
 except OptionalDependencyNotAvailable:
     from .utils import dummy_flax_objects  # noqa F403
+
+    _import_structure["utils.dummy_flax_objects"] = [
+        name for name in dir(dummy_flax_objects) if not name.startswith("_")
+    ]
 
     _import_structure["utils.dummy_flax_objects"] = [
         name for name in dir(dummy_flax_objects) if not name.startswith("_")
@@ -428,15 +431,14 @@ except OptionalDependencyNotAvailable:
     from .utils import dummy_note_seq_objects  # noqa F403
 
     _import_structure["utils.dummy_note_seq_objects"] = [
-        name for name in dir(dummy_note_seq_objects) if not name.startswith("_")
-    ]
-
-
-else:
-    _import_structure["pipelines"].extend(["MidiProcessor"])
-
 if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
     from .configuration_utils import ConfigMixin
+
+    try:
+        if not is_onnx_available():
+            pass  # Add your code here
+    except ImportError as e:
+        pass
 
     try:
         if not is_onnx_available():

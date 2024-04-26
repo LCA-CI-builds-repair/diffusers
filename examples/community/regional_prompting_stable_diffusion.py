@@ -13,6 +13,7 @@ from diffusers.utils import USE_PEFT_BACKEND
 
 
 try:
+try:
     from compel import Compel
 except ImportError:
     Compel = None
