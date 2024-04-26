@@ -319,7 +319,6 @@ def vqvae_decoder_to_diffusers_checkpoint(model, checkpoint):
     )
 
     # up_blocks
-
     for diffusers_up_block_idx, up_block in enumerate(model.decoder.up_blocks):
         # up_blocks are stored in reverse order in the VQ-diffusion checkpoint
         orig_up_block_idx = len(model.decoder.up_blocks) - 1 - diffusers_up_block_idx

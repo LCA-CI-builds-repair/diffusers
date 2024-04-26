@@ -114,7 +114,6 @@ class RePaintScheduler(SchedulerMixin, ConfigMixin):
             Clip the predicted sample between -1 and 1 for numerical stability.
 
     """
-
     order = 1
 
     @register_to_config

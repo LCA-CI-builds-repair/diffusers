@@ -24,7 +24,6 @@ To create the package for PyPI.
    for the post-release and run `make fix-copies` on the main branch as well.
 
 2. Run Tests for Amazon Sagemaker. The documentation is located in `./tests/sagemaker/README.md`, otherwise @philschmid.
-
 3. Unpin specific versions from setup.py that use a git install.
 
 4. Checkout the release branch (v<RELEASE>-release, for example v4.19-release), and commit these changes with the

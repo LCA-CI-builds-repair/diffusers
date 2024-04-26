@@ -89,8 +89,6 @@ def create_lora_layers(model, mock_weights: bool = True):
                 lora_attn_procs[name].to_out_lora.up.weight += 1
 
     return lora_attn_procs
-
-
 def create_unet_lora_layers(unet: nn.Module):
     lora_attn_procs = {}
     for name in unet.attn_processors.keys():
@@ -159,6 +157,7 @@ def create_lora_3d_layers(model, mock_weights: bool = True):
         lora_attn_procs[name] = lora_attn_procs[name].to(model.device)
 
         if mock_weights:
+        if mock_weights:
             # add 1 to weights to mock trained weights
             with torch.no_grad():
                 lora_attn_procs[name].to_q_lora.up.weight += 1
@@ -167,8 +166,6 @@ def create_lora_3d_layers(model, mock_weights: bool = True):
                 lora_attn_procs[name].to_out_lora.up.weight += 1
 
     return lora_attn_procs
-
-
 def set_lora_weights(lora_attn_parameters, randn_weight=False, var=1.0):
     with torch.no_grad():
         for parameter in lora_attn_parameters:

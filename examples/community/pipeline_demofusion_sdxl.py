@@ -973,7 +973,6 @@ class DemoFusionSDXLPipeline(DiffusionPipeline, FromSingleFileMixin, LoraLoaderM
             timesteps = timesteps[:num_inference_steps]
 
         output_images = []
-
         ############################################################### Phase 1 #################################################################
 
         print("### Phase 1 Denoising ###")
