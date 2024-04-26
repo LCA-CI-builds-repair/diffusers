@@ -23,14 +23,7 @@ from ...utils import BaseOutput
 from ...utils.accelerate_utils import apply_forward_hook
 from ..modeling_utils import ModelMixin
 from .vae import DecoderOutput, DecoderTiny, EncoderTiny
-
-
-@dataclass
-class AutoencoderTinyOutput(BaseOutput):
-    """
-    Output of AutoencoderTiny encoding method.
-
-    Args:
+from ...loaders import FromSingleFileMixin
         latents (`torch.Tensor`): Encoded outputs of the `Encoder`.
 
     """

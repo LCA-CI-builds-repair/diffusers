@@ -21,8 +21,7 @@ from ...utils.accelerate_utils import apply_forward_hook
 from ..modeling_outputs import AutoencoderKLOutput
 from ..modeling_utils import ModelMixin
 from .vae import DecoderOutput, DiagonalGaussianDistribution, Encoder, MaskConditionDecoder
-
-
+from ...loaders import FromSingleFileMixin
 class AsymmetricAutoencoderKL(ModelMixin, ConfigMixin):
     r"""
     Designing a Better Asymmetric VQGAN for StableDiffusion https://arxiv.org/abs/2306.04632 . A VAE model with KL loss

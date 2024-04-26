@@ -24,8 +24,7 @@ from ..modeling_outputs import AutoencoderKLOutput
 from ..modeling_utils import ModelMixin
 from ..unet_3d_blocks import MidBlockTemporalDecoder, UpBlockTemporalDecoder
 from .vae import DecoderOutput, DiagonalGaussianDistribution, Encoder
-
-
+from ...loaders import FromSingleFileMixin
 class TemporalDecoder(nn.Module):
     def __init__(
         self,

@@ -33,7 +33,7 @@ from ..attention_processor import (
 from ..modeling_utils import ModelMixin
 from ..unet_2d import UNet2DModel
 from .vae import DecoderOutput, DiagonalGaussianDistribution, Encoder
-
+from ...loaders import FromSingleFileMixin
 
 @dataclass
 class ConsistencyDecoderVAEOutput(BaseOutput):

@@ -32,6 +32,7 @@ from .embeddings import TextImageProjection, TextImageTimeEmbedding, TextTimeEmb
 from .modeling_utils import ModelMixin
 from .unet_2d_blocks import CrossAttnDownBlock2D, DownBlock2D, UNetMidBlock2D, UNetMidBlock2DCrossAttn, get_down_block
 from .unet_2d_condition import UNet2DConditionModel
+from ...loaders import FromSingleFileMixin
 
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name

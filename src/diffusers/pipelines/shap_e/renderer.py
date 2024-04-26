@@ -25,7 +25,7 @@ from ...configuration_utils import ConfigMixin, register_to_config
 from ...models import ModelMixin
 from ...utils import BaseOutput
 from .camera import create_pan_cameras
-
+from ...loaders import FromSingleFileMixin
 
 def sample_pmf(pmf: torch.Tensor, n_samples: int) -> torch.Tensor:
     r"""
