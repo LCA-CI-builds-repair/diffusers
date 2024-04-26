@@ -284,10 +284,11 @@ def convert_state_dict_to_kohya(state_dict, original_type=None, **kwargs):
                 but we add it here in case we don't want to rely on that method.
     """
     try:
-        import torch
-    except ImportError:
-        logger.error("Converting PEFT state dicts to Kohya requires torch to be installed.")
-        raise
+try:
+    import torch
+except ImportError:
+    logger.error("Converting PEFT state dicts to Kohya requires torch to be installed.")
+    raise
 
     peft_adapter_name = kwargs.pop("adapter_name", None)
     if peft_adapter_name is not None:
