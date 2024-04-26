@@ -204,8 +204,6 @@ spec = importlib.util.spec_from_file_location(
     submodule_search_locations=[PATH_TO_DIFFUSERS],
 )
 diffusers = spec.loader.load_module()
-
-
 def check_model_list():
     """Check the model list inside the transformers library."""
     # Get the models from the directory structure of `src/diffusers/models/`
@@ -714,6 +712,7 @@ def is_rst_docstring(docstring):
 
 
 def check_docstrings_are_in_md():
+def check_docstrings_are_in_md():
     """Check all docstrings are in md"""
     files_with_rst = []
     for file in Path(PATH_TO_DIFFUSERS).glob("**/*.py"):
@@ -726,8 +725,6 @@ def check_docstrings_are_in_md():
                 continue
             files_with_rst.append(file)
             break
-
-    if len(files_with_rst) > 0:
         raise ValueError(
             "The following files have docstrings written in rst:\n"
             + "\n".join([f"- {f}" for f in files_with_rst])

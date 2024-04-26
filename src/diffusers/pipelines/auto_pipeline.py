@@ -422,7 +422,6 @@ class AutoPipelineForText2Image(ConfigMixin):
             original_pipe_kwargs[k] = original_config.pop(f"_{k}")
 
         text_2_image_kwargs = {**passed_class_obj, **original_class_obj, **passed_pipe_kwargs, **original_pipe_kwargs}
-
         # store unused config as private attribute
         unused_original_config = {
             f"{'' if k.startswith('_') else '_'}{k}": original_config[k]
@@ -699,6 +698,7 @@ class AutoPipelineForImage2Image(ConfigMixin):
             original_pipe_kwargs[k] = original_config.pop(f"_{k}")
 
         image_2_image_kwargs = {**passed_class_obj, **original_class_obj, **passed_pipe_kwargs, **original_pipe_kwargs}
+        image_2_image_kwargs = {**passed_class_obj, **original_class_obj, **passed_pipe_kwargs, **original_pipe_kwargs}
 
         # store unused config as private attribute
         unused_original_config = {
@@ -708,8 +708,6 @@ class AutoPipelineForImage2Image(ConfigMixin):
         }
 
         missing_modules = set(expected_modules) - set(pipeline._optional_components) - set(image_2_image_kwargs.keys())
-
-        if len(missing_modules) > 0:
             raise ValueError(
                 f"Pipeline {image_2_image_cls} expected {expected_modules}, but only {set(list(passed_class_obj.keys()) + list(original_class_obj.keys()))} were passed"
             )

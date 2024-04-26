@@ -230,16 +230,13 @@ try:
     logger.debug(f"Successfully imported tensorboard version {_tensorboard_version}")
 except importlib_metadata.PackageNotFoundError:
     _tensorboard_available = False
-
-
+_compel_available = importlib.util.find_spec("compel")
 _compel_available = importlib.util.find_spec("compel")
 try:
     _compel_version = importlib_metadata.version("compel")
     logger.debug(f"Successfully imported compel version {_compel_version}")
 except importlib_metadata.PackageNotFoundError:
     _compel_available = False
-
-
 _ftfy_available = importlib.util.find_spec("ftfy") is not None
 try:
     _ftfy_version = importlib_metadata.version("ftfy")

@@ -69,8 +69,6 @@ spec = importlib.util.spec_from_file_location(
     submodule_search_locations=[TRANSFORMERS_PATH],
 )
 diffusers_module = spec.loader.load_module()
-
-
 # Thanks to https://stackoverflow.com/questions/29916065/how-to-do-camelcase-split-in-python
 def camel_case_split(identifier):
     "Split a camelcased `identifier` into words."
