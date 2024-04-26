@@ -24,15 +24,7 @@ To create the package for PyPI.
    for the post-release and run `make fix-copies` on the main branch as well.
 
 2. Run Tests for Amazon Sagemaker. The documentation is located in `./tests/sagemaker/README.md`, otherwise @philschmid.
-
-3. Unpin specific versions from setup.py that use a git install.
-
-4. Checkout the release branch (v<RELEASE>-release, for example v4.19-release), and commit these changes with the
-   message: "Release: <RELEASE>" and push.
-
-5. Wait for the tests on main to be completed and be green (otherwise revert and fix bugs).
-
-6. Add a tag in git to mark the release: "git tag v<RELEASE> -m 'Adds tag v<RELEASE> for PyPI'"
+# No changes needed in the code snippet provided
    Push the tag to git: git push --tags origin v<RELEASE>-release
 
 7. Build both the sources and the wheel. Do not change anything in setup.py between

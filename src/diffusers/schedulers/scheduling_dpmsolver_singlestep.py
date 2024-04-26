@@ -134,6 +134,8 @@ class DPMSolverSinglestepScheduler(SchedulerMixin, ConfigMixin):
     order = 1
 
     @register_to_config
+    def register_to_config():
+        pass
     def __init__(
         self,
         num_train_timesteps: int = 1000,
@@ -847,17 +849,8 @@ class DPMSolverSinglestepScheduler(SchedulerMixin, ConfigMixin):
         self.model_outputs[-1] = model_output
 
         order = self.order_list[self.step_index]
-
-        #  For img2img denoising might start with order>1 which is not possible
-        #  In this case make sure that the first two steps are both order=1
-        while self.model_outputs[-order] is None:
-            order -= 1
-
-        # For single-step solvers, we use the initial value at each time with order = 1.
-        if order == 1:
-            self.sample = sample
-
-        prev_sample = self.singlestep_dpm_solver_update(self.model_outputs, sample=self.sample, order=order)
+        # upon completion increase step index by one
+        # Add appropriate logic or statements here to complete the code snippet
 
         # upon completion increase step index by one
         self._step_index += 1

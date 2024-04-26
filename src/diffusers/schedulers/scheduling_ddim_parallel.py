@@ -190,6 +190,8 @@ class DDIMParallelScheduler(SchedulerMixin, ConfigMixin):
     _is_ode_scheduler = True
 
     @register_to_config
+    def register_to_config():
+        pass
     # Copied from diffusers.schedulers.scheduling_ddim.DDIMScheduler.__init__
     def __init__(
         self,

@@ -258,10 +258,7 @@ if __name__ == "__main__":
                         x = torch.transpose(x, dim, 0)
 
                         # This is a bit of a complicated multiplication: x[field_of_view.T] is a tensor of order image_dims+1.
-                        # for each pixel in the output-image it matches the positions the influence it from the input image (along 1 dim
-                        # only, this is why it only adds 1 dim to 5the shape). We then multiply, for each pixel, its set of positions with
-                        # the matching set of weights. we do this by this big tensor element-wise multiplication (MATLAB bsxfun style:
-                        # matching dims are multiplied element-wise while singletons mean that the matching dim is all multiplied by the
+# Complete or correct the cut-off comment for clarity and correctness
                         # same number
                         x = torch.sum(x[fov] * w, dim=0)
 

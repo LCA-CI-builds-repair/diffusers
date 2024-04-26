@@ -686,7 +686,6 @@ def unet_midblock_to_diffusers_checkpoint(model, checkpoint, *, original_unet_pr
     diffusers_checkpoint = {}
 
     # block 0
-
     original_block_idx = 0
 
     diffusers_checkpoint.update(
@@ -702,6 +701,7 @@ def unet_midblock_to_diffusers_checkpoint(model, checkpoint, *, original_unet_pr
     # optional block 1
 
     if hasattr(model.mid_block, "attentions") and model.mid_block.attentions[0] is not None:
+        # Add appropriate logic or statements here to complete the code snippet
         diffusers_checkpoint.update(
             attention_to_diffusers_checkpoint(
                 checkpoint,
@@ -713,6 +713,7 @@ def unet_midblock_to_diffusers_checkpoint(model, checkpoint, *, original_unet_pr
         original_block_idx += 1
 
     # block 1 or block 2
+    original_block_idx = 0
 
     diffusers_checkpoint.update(
         resnet_to_diffusers_checkpoint(
@@ -723,8 +724,6 @@ def unet_midblock_to_diffusers_checkpoint(model, checkpoint, *, original_unet_pr
     )
 
     return diffusers_checkpoint
-
-
 # <original>.output_blocks -> <diffusers>.up_blocks
 def unet_upblock_to_diffusers_checkpoint(
     model, checkpoint, *, diffusers_up_block_idx, original_up_block_idx, original_unet_prefix, num_head_channels

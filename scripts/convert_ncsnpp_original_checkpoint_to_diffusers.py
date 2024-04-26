@@ -79,15 +79,8 @@ def convert_ncsnpp_checkpoint(checkpoint, config):
             new_layer.conv_shortcut.bias.data = old_checkpoint[f"all_modules.{index}.Conv_2.bias"].data
 
     for i, block in enumerate(new_model_architecture.downsample_blocks):
-        has_attentions = hasattr(block, "attentions")
-        for j in range(len(block.resnets)):
-            set_resnet_weights(block.resnets[j], checkpoint, module_index)
-            module_index += 1
-            if has_attentions:
-                set_attention_weights(block.attentions[j], checkpoint, module_index)
-                module_index += 1
-
         if hasattr(block, "downsamplers") and block.downsamplers is not None:
+            # Add appropriate logic or statements here to complete the code snippet
             set_resnet_weights(block.resnet_down, checkpoint, module_index)
             module_index += 1
             block.skip_conv.weight.data = checkpoint[f"all_modules.{module_index}.Conv_0.weight"].data

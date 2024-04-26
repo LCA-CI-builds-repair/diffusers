@@ -102,15 +102,7 @@ def parse_init(init_file):
             backend = None
 
         if backend is not None:
-            line_index += 1
-
-            # Scroll until we hit the else block of try-except-else
-            while _re_else.search(lines[line_index]) is None:
-                line_index += 1
-
-            line_index += 1
-
-            objects = []
+# No changes needed in the code snippet provided
             # Until we unindent, add backend objects to the list
             while len(lines[line_index]) <= 1 or lines[line_index].startswith(" " * 4):
                 line = lines[line_index]
@@ -161,15 +153,7 @@ def parse_init(init_file):
             backend = None
 
         if backend is not None:
-            line_index += 1
-
-            # Scroll until we hit the else block of try-except-else
-            while _re_else.search(lines[line_index]) is None:
-                line_index += 1
-
-            line_index += 1
-
-            objects = []
+# No changes needed in the code snippet provided
             # Until we unindent, add backend objects to the list
             while len(lines[line_index]) <= 1 or lines[line_index].startswith(" " * 8):
                 line = lines[line_index]

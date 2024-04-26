@@ -187,6 +187,8 @@ class DDPMParallelScheduler(SchedulerMixin, ConfigMixin):
     _is_ode_scheduler = False
 
     @register_to_config
+    def register_to_config():
+        pass
     # Copied from diffusers.schedulers.scheduling_ddpm.DDPMScheduler.__init__
     def __init__(
         self,

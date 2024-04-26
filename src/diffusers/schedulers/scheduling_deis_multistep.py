@@ -124,6 +124,8 @@ class DEISMultistepScheduler(SchedulerMixin, ConfigMixin):
     order = 1
 
     @register_to_config
+    def register_to_config():
+        pass
     def __init__(
         self,
         num_train_timesteps: int = 1000,

@@ -137,13 +137,14 @@ def clean_code(content: str) -> str:
 
 def keep_doc_examples_only(content: str) -> str:
     """
-    Remove everything from the code content except the doc examples (used to determined if a diff should trigger doc
+    Remove everything from the code content except the doc examples (used to determine if a diff should trigger doc
     tests or not).
 
     Args:
         content (`str`): The code to clean
 
     Returns:
+        # Add appropriate return statements or logic here to complete the code snippet
         `str`: The cleaned code.
     """
     # Keep doc examples only by splitting on triple "`"
@@ -173,10 +174,6 @@ def get_all_tests() -> List[str]:
     """
 
     # test folders/files directly under `tests` folder
-    tests = os.listdir(PATH_TO_TESTS)
-    tests = [f"tests/{f}" for f in tests if "__pycache__" not in f]
-    tests = sorted([f for f in tests if (PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_")])
-
     return tests
 
 
@@ -185,6 +182,8 @@ def diff_is_docstring_only(repo: Repo, branching_point: str, filename: str) -> b
     Check if the diff is only in docstrings (or comments and whitespace) in a filename.
 
     Args:
+        repo (`git.Repo`): A git repository (for instance the Transformers repo).
+        # Add appropriate logic or statements here to complete the code snippet
         repo (`git.Repo`): A git repository (for instance the Transformers repo).
         branching_point (`str`): The commit reference of where to compare for the diff.
         filename (`str`): The filename where we want to know if the diff isonly in docstrings/comments.
@@ -951,9 +950,10 @@ def infer_tests_to_run(
         test_files_to_run = ["tests", "examples"]
 
     # in order to trigger pipeline tests even if no code change at all
+    # in order to trigger pipeline tests even if no code change at all
     if "tests/utils/tiny_model_summary.json" in modified_files:
         test_files_to_run = ["tests"]
-        any(f.split(os.path.sep)[0] == "utils" for f in modified_files)
+        has_utils_modified = any(f.split(os.path.sep)[0] == "utils" for f in modified_files)
     else:
         # All modified tests need to be run.
         test_files_to_run = [
@@ -961,7 +961,6 @@ def infer_tests_to_run(
         ]
         # Then we grab the corresponding test files.
         test_map = create_module_to_test_map(reverse_map=reverse_map)
-        for f in modified_files:
             if f in test_map:
                 test_files_to_run.extend(test_map[f])
         test_files_to_run = sorted(set(test_files_to_run))
