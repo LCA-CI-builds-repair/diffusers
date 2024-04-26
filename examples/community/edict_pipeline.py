@@ -212,7 +212,6 @@ class EDICTPipeline(DiffusionPipeline):
         bwd_timesteps = fwd_timesteps.flip(0)
 
         coupled_latents = self.prepare_latents(image, base_embeds, bwd_timesteps, guidance_scale, generator)
-
         for i, t in tqdm(enumerate(fwd_timesteps), total=len(fwd_timesteps)):
             # j - model_input index, k - base index
             for k in range(2):

@@ -543,6 +543,8 @@ def pytest_addoption_shared(parser):
     """
     option = "--make-reports"
     if option not in pytest_opt_registered:
+        if parser is None:
+            parser = argparse.ArgumentParser()
         parser.addoption(
             option,
             action="store",
@@ -747,8 +749,6 @@ def run_test_in_subprocess(test_case, target_func, inputs=None, timeout=None):
     input_queue.put(inputs, timeout=timeout)
 
     process = ctx.Process(target=target_func, args=(input_queue, output_queue, timeout))
-    process.start()
-    # Kill the child process if we can't get outputs from it in time: otherwise, the hanging subprocess prevents
     # the test to exit properly.
     try:
         results = output_queue.get(timeout=timeout)
@@ -757,6 +757,8 @@ def run_test_in_subprocess(test_case, target_func, inputs=None, timeout=None):
         process.terminate()
         test_case.fail(e)
     process.join(timeout=timeout)
+
+    if results is not None and results["error"] is not None:
 
     if results["error"] is not None:
         test_case.fail(f'{results["error"]}')
