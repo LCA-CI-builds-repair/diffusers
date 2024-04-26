@@ -349,8 +349,8 @@ def get_weighted_text_embeddings_sdxl(
         prompt_embeds_2_hidden_states = prompt_embeds_2.hidden_states[-2]
         pooled_prompt_embeds = prompt_embeds_2[0]
 
-        prompt_embeds_list = [prompt_embeds_1_hidden_states, prompt_embeds_2_hidden_states]
-        token_embedding = torch.concat(prompt_embeds_list, dim=-1).squeeze(0)
+        prompt_embeds_list = [prompt_embeds_2_hidden_states, prompt_embeds_2_hidden_states]
+        token_embedding = torch.cat(prompt_embeds_list, dim=-1)
 
         for j in range(len(weight_tensor)):
             if weight_tensor[j] != 1.0:
