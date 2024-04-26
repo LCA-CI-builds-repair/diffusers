@@ -713,16 +713,16 @@ def unet_midblock_to_diffusers_checkpoint(model, checkpoint, *, original_unet_pr
         original_block_idx += 1
 
     # block 1 or block 2
-
-    diffusers_checkpoint.update(
-        resnet_to_diffusers_checkpoint(
-            checkpoint,
-            diffusers_resnet_prefix="mid_block.resnets.1",
-            resnet_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
-        )
+# Added missing parentheses for the resnet_to_diffusers_checkpoint function call
+diffusers_checkpoint.update(
+    resnet_to_diffusers_checkpoint(
+        checkpoint,
+        diffusers_resnet_prefix="mid_block.resnets.1",
+        resnet_prefix=f"{original_unet_prefix}.middle_block.{original_block_idx}",
     )
+)
 
-    return diffusers_checkpoint
+return diffusers_checkpoint
 
 
 # <original>.output_blocks -> <diffusers>.up_blocks

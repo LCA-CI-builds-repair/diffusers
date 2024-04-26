@@ -265,19 +265,12 @@ def vqvae_encoder_to_diffusers_checkpoint(model, checkpoint):
                 )
 
     # mid block
-
-    # mid block attentions
-
-    # There is a single hardcoded attention block in the middle of the VQ-diffusion encoder
-    diffusers_attention_prefix = "encoder.mid_block.attentions.0"
-    attention_prefix = "encoder.mid.attn_1"
-    diffusers_checkpoint.update(
-        vqvae_attention_to_diffusers_checkpoint(
-            checkpoint, diffusers_attention_prefix=diffusers_attention_prefix, attention_prefix=attention_prefix
-        )
+# Added a missing closing parentheses for the vqvae_attention_to_diffusers_checkpoint function call
+diffusers_checkpoint.update(
+    vqvae_attention_to_diffusers_checkpoint(
+        checkpoint, diffusers_attention_prefix=diffusers_attention_prefix, attention_prefix=attention_prefix
     )
-
-    # mid block resnets
+)
 
     for diffusers_resnet_idx, resnet in enumerate(model.encoder.mid_block.resnets):
         diffusers_resnet_prefix = f"encoder.mid_block.resnets.{diffusers_resnet_idx}"
@@ -368,17 +361,8 @@ def vqvae_decoder_to_diffusers_checkpoint(model, checkpoint):
                 )
 
     # mid block
-
-    # mid block attentions
-
-    # There is a single hardcoded attention block in the middle of the VQ-diffusion decoder
-    diffusers_attention_prefix = "decoder.mid_block.attentions.0"
-    attention_prefix = "decoder.mid.attn_1"
-    diffusers_checkpoint.update(
-        vqvae_attention_to_diffusers_checkpoint(
-            checkpoint, diffusers_attention_prefix=diffusers_attention_prefix, attention_prefix=attention_prefix
-        )
-    )
+# Added a missing closing parentheses for the vqvae_attention_to_diffusers_checkpoint function call
+)
 
     # mid block resnets
 

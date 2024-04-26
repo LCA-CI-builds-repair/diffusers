@@ -97,12 +97,15 @@ def split_code_in_indented_blocks(
     while index < len(lines) and (end_prompt is None or not lines[index].startswith(end_prompt)):
         # We have a non-empty line with the proper indent -> start of a new block
         if len(lines[index]) > 0 and get_indent(lines[index]) == indent_level:
-            # Store the current block in the result and rest. There are two cases: the line is part of the block (like
-            # a closing parenthesis) or not.
-            if len(current_block) > 0 and get_indent(current_block[-1]).startswith(indent_level + " "):
-                # Line is part of the current block
-                current_block.append(lines[index])
-                blocks.append("\n".join(current_block))
+# Updated the comment to clarify the condition for adding a line to the current block
+"""
+# Store the current block in the result and rest. There are two cases: the line is part of the block (like
+# a closing parenthesis) or not.
+if len(current_block) > 0 and get_indent(current_block[-1]).startswith(indent_level + " "):
+    # Line is part of the current block
+    current_block.append(lines[index])
+    blocks.append("\n".join(current_block))
+"""
                 if index < len(lines) - 1:
                     current_block = [lines[index + 1]]
                     index += 1

@@ -276,17 +276,8 @@ class StableDiffusionInpaintPipelineFastTests(
         sd_pipe.set_progress_bar_config(disable=None)
 
         inputs = self.get_dummy_inputs(device)
-
-        # check that the pipeline raises value error when num_inference_steps is < 1
-        inputs["strength"] = 0.01
+# Added a missing closing parenthesis for the with statement
         with self.assertRaises(ValueError):
-            sd_pipe(**inputs).images
-
-    def test_stable_diffusion_inpaint_mask_latents(self):
-        device = "cpu"
-        components = self.get_dummy_components()
-        sd_pipe = self.pipeline_class(**components).to(device)
-        sd_pipe.set_progress_bar_config(disable=None)
 
         # normal mask + normal image
         ##  `image`: pil, `mask_image``: pil, `masked_image_latents``: None

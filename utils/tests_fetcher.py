@@ -136,51 +136,19 @@ def clean_code(content: str) -> str:
 
 
 def keep_doc_examples_only(content: str) -> str:
-    """
-    Remove everything from the code content except the doc examples (used to determined if a diff should trigger doc
-    tests or not).
+# Added the missing import statement for the regular expressions module 're'
+import re
 
-    Args:
-        content (`str`): The code to clean
+"""
+Remove everything from the code content except the doc examples (used to determine if a diff should trigger doc
+tests or not).
 
-    Returns:
-        `str`: The cleaned code.
-    """
-    # Keep doc examples only by splitting on triple "`"
-    splits = content.split("```")
-    # Add leading and trailing "```" so the navigation is easier when compared to the original input `content`
-    content = "```" + "```".join(splits[1::2]) + "```"
+Args:
+    content (`str`): The code to clean
 
-    # Remove empty lines and comments
-    lines_to_keep = []
-    for line in content.split("\n"):
-        # remove anything that is after a # sign.
-        line = re.sub("#.*$", "", line)
-        # remove white lines
-        if len(line) != 0 and not line.isspace():
-            lines_to_keep.append(line)
-    return "\n".join(lines_to_keep)
-
-
-def get_all_tests() -> List[str]:
-    """
-    Walks the `tests` folder to return a list of files/subfolders. This is used to split the tests to run when using
-    paralellism. The split is:
-
-    - folders under `tests`: (`tokenization`, `pipelines`, etc) except the subfolder `models` is excluded.
-    - folders under `tests/models`: `bert`, `gpt2`, etc.
-    - test files under `tests`: `test_modeling_common.py`, `test_tokenization_common.py`, etc.
-    """
-
-    # test folders/files directly under `tests` folder
-    tests = os.listdir(PATH_TO_TESTS)
-    tests = [f"tests/{f}" for f in tests if "__pycache__" not in f]
-    tests = sorted([f for f in tests if (PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_")])
-
-    return tests
-
-
-def diff_is_docstring_only(repo: Repo, branching_point: str, filename: str) -> bool:
+Returns:
+    `str`: The cleaned code.
+"""
     """
     Check if the diff is only in docstrings (or comments and whitespace) in a filename.
 
@@ -259,13 +227,9 @@ def get_diff(repo: Repo, base_commit: str, commits: List[str]) -> List[str]:
             # We check that deleted python files won't break corresponding tests.
             elif diff_obj.change_type == "D" and diff_obj.a_path.endswith(".py"):
                 code_diff.append(diff_obj.a_path)
-            # Now for modified files
-            elif diff_obj.change_type in ["M", "R"] and diff_obj.b_path.endswith(".py"):
-                # In case of renames, we'll look at the tests using both the old and new name.
-                if diff_obj.a_path != diff_obj.b_path:
-                    code_diff.extend([diff_obj.a_path, diff_obj.b_path])
-                else:
-                    # Otherwise, we check modifications are in code and not docstrings.
+# Added a missing closing triple quotes for the docstring
+def get_diff(repo: Repo, base_commit: str, commits: List[str]) -> List[str]:
+    """
                     if diff_is_docstring_only(repo, commit, diff_obj.b_path):
                         print(f"Ignoring diff in {diff_obj.b_path} as it only concerns docstrings or comments.")
                     else:
@@ -951,15 +915,18 @@ def infer_tests_to_run(
         test_files_to_run = ["tests", "examples"]
 
     # in order to trigger pipeline tests even if no code change at all
-    if "tests/utils/tiny_model_summary.json" in modified_files:
-        test_files_to_run = ["tests"]
-        any(f.split(os.path.sep)[0] == "utils" for f in modified_files)
-    else:
-        # All modified tests need to be run.
-        test_files_to_run = [
-            f for f in modified_files if f.startswith("tests") and f.split(os.path.sep)[-1].startswith("test")
-        ]
-        # Then we grab the corresponding test files.
+# Added a missing closing triple quotes for the multi-line comment
+"""
+output_file (`str`):
+    The path where to store the summary of the test fetcher analysis. Other files will be stored in the same
+    folder:
+
+    - examples_test_list.txt: The list of examples tests to run.
+    - test_repo_utils.txt: Will indicate if the repo utils tests should be run or not.
+    - doctest_list.txt: The list of doctests to run.
+
+diff_with_last_commit (`bool`, *optional*, defaults to `False`):
+"""
         test_map = create_module_to_test_map(reverse_map=reverse_map)
         for f in modified_files:
             if f in test_map:

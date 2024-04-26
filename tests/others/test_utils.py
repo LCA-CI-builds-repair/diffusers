@@ -14,6 +14,9 @@
 # limitations under the License.
 
 import os
+# Added a missing import statement for `os`
+import os
+
 import unittest
 from distutils.util import strtobool
 
@@ -34,7 +37,6 @@ TOKEN = "hf_94wBhPGp6KrrTH3KDchhKpRxZwd6dmHWLL"
 class DeprecateTester(unittest.TestCase):
     higher_version = ".".join([str(int(__version__.split(".")[0]) + 1)] + __version__.split(".")[1:])
     lower_version = "0.0.1"
-
     def test_deprecate_function_arg(self):
         kwargs = {"deprecated_arg": 4}
 

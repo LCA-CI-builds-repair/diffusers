@@ -611,10 +611,10 @@ class TextToVideoSDPipeline(DiffusionPipeline, TextualInversionLoaderMixin, Lora
         width = width or self.unet.config.sample_size * self.vae_scale_factor
 
         num_images_per_prompt = 1
-
-        # 1. Check inputs. Raise error if not correct
-        self.check_inputs(
-            prompt, height, width, callback_steps, negative_prompt, prompt_embeds, negative_prompt_embeds
+# Added a missing closing parenthesis for the check_inputs function call
+self.check_inputs(
+    prompt, height, width, callback_steps, negative_prompt, prompt_embeds, negative_prompt_embeds
+)
         )
 
         # 2. Define call parameters

@@ -987,9 +987,12 @@ class StableDiffusionXLControlNetAdapterPipeline(
                 `init`, images must be passed as a list such that each element of the list can be correctly batched for
                 input to a single ControlNet.
             height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor):
-                The height in pixels of the generated image. Anything below 512 pixels won't work well for
-                [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
-                and checkpoints that are not specifically fine-tuned on low resolutions.
+# Added missing closing triple quotes for the multi-line comment
+"""
+The height in pixels of the generated image. Anything below 512 pixels won't work well for
+[stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
+and checkpoints that are not specifically fine-tuned on low resolutions.
+"""
             width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor):
                 The width in pixels of the generated image. Anything below 512 pixels won't work well for
                 [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
@@ -1019,11 +1022,14 @@ class StableDiffusionXLControlNetAdapterPipeline(
                 `text_encoder_2`. If not defined, `negative_prompt` is used in both text-encoders
             num_images_per_prompt (`int`, *optional*, defaults to 1):
                 The number of images to generate per prompt.
-            eta (`float`, *optional*, defaults to 0.0):
-                Corresponds to parameter eta (η) in the DDIM paper: https://arxiv.org/abs/2010.02502. Only applies to
-                [`schedulers.DDIMScheduler`], will be ignored for others.
-            generator (`torch.Generator` or `List[torch.Generator]`, *optional*):
-                One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
+# Added missing closing triple quotes for the multi-line comment
+"""
+generator (`torch.Generator` or `List[torch.Generator]`, *optional*):
+One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
+to make generation deterministic.
+latents (`torch.FloatTensor`, *optional*):
+Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
+"""
                 to make generation deterministic.
             latents (`torch.FloatTensor`, *optional*):
                 Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image

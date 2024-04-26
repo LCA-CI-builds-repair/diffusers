@@ -664,15 +664,8 @@ def unet_midblock_to_diffusers_checkpoint(model, checkpoint, *, num_head_channel
         original_block_idx += 1
 
     # block 1 or block 2
-
-    diffusers_checkpoint.update(
-        resnet_to_diffusers_checkpoint(
-            checkpoint,
-            diffusers_resnet_prefix="mid_block.resnets.1",
-            resnet_prefix=f"middle_block.{original_block_idx}",
-        )
-    )
-
+# Updated the resnet_prefix to include the missing prefix "mid_block"
+resnet_prefix=f"mid_block.middle_block.{original_block_idx}",
     return diffusers_checkpoint
 
 

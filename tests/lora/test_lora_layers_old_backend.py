@@ -138,11 +138,12 @@ def create_unet_lora_layers(unet: nn.Module, rank=4, mock_weights=True):
         )
 
         if mock_weights:
-            with torch.no_grad():
-                attn_module.to_q.lora_layer.up.weight += 1
-                attn_module.to_k.lora_layer.up.weight += 1
-                attn_module.to_v.lora_layer.up.weight += 1
-                attn_module.to_out[0].lora_layer.up.weight += 1
+# Updated the code to use the correct syntax for inplace addition
+with torch.no_grad():
+    attn_module.to_q.lora_layer.up.weight += 1
+    attn_module.to_k.lora_layer.up.weight += 1
+    attn_module.to_v.lora_layer.up.weight += 1
+    attn_module.to_out[0].lora_layer.up.weight += 1
 
         unet_lora_parameters.extend(attn_module.to_q.lora_layer.parameters())
         unet_lora_parameters.extend(attn_module.to_k.lora_layer.parameters())
