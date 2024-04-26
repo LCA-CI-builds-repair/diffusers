@@ -199,34 +199,39 @@ try:
             raise ValueError("xformers is installed in your environment and requires PyTorch >= 1.12")
 
     logger.debug(f"Successfully imported xformers version {_xformers_version}")
+import importlib.util
+import importlib.metadata
+import logging
+
+try:
+    _xformers_available = importlib.util.find_spec("xformers") is not None
 except importlib_metadata.PackageNotFoundError:
     _xformers_available = False
 
-_k_diffusion_available = importlib.util.find_spec("k_diffusion") is not None
 try:
-    _k_diffusion_version = importlib_metadata.version("k_diffusion")
+    _k_diffusion_available = importlib.util.find_spec("k_diffusion") is not None
+    _k_diffusion_version = importlib.metadata.version("k_diffusion")
     logger.debug(f"Successfully imported k-diffusion version {_k_diffusion_version}")
 except importlib_metadata.PackageNotFoundError:
     _k_diffusion_available = False
 
-_note_seq_available = importlib.util.find_spec("note_seq") is not None
 try:
-    _note_seq_version = importlib_metadata.version("note_seq")
+    _note_seq_available = importlib.util.find_spec("note_seq") is not None
+    _note_seq_version = importlib.metadata.version("note_seq")
     logger.debug(f"Successfully imported note-seq version {_note_seq_version}")
 except importlib_metadata.PackageNotFoundError:
     _note_seq_available = False
 
-_wandb_available = importlib.util.find_spec("wandb") is not None
 try:
-    _wandb_version = importlib_metadata.version("wandb")
-    logger.debug(f"Successfully imported wandb version {_wandb_version }")
+    _wandb_available = importlib.util.find_spec("wandb") is not None
+    _wandb_version = importlib.metadata.version("wandb")
+    logger.debug(f"Successfully imported wandb version {_wandb_version}")
 except importlib_metadata.PackageNotFoundError:
     _wandb_available = False
 
-
-_tensorboard_available = importlib.util.find_spec("tensorboard")
 try:
-    _tensorboard_version = importlib_metadata.version("tensorboard")
+    _tensorboard_available = importlib.util.find_spec("tensorboard") is not None
+    _tensorboard_version = importlib.metadata.version("tensorboard")
     logger.debug(f"Successfully imported tensorboard version {_tensorboard_version}")
 except importlib_metadata.PackageNotFoundError:
     _tensorboard_available = False
@@ -264,11 +269,21 @@ except importlib_metadata.PackageNotFoundError:
     _torchsde_available = False
 
 _invisible_watermark_available = importlib.util.find_spec("imwatermark") is not None
+import importlib.util
+import importlib.metadata
+import logging
+
 try:
-    _invisible_watermark_version = importlib_metadata.version("invisible-watermark")
-    logger.debug(f"Successfully imported invisible-watermark version {_invisible_watermark_version}")
+    _peft_available = importlib.util.find_spec("peft") is not None
 except importlib_metadata.PackageNotFoundError:
-    _invisible_watermark_available = False
+    _peft_available = False
+
+if _peft_available:
+    try:
+        _peft_version = importlib_metadata.version("peft")
+    except importlib_metadata.PackageNotFoundError:
+        # Handle version retrieval error
+        logger.error("Failed to retrieve PEFT version")
 
 
 _peft_available = importlib.util.find_spec("peft") is not None
