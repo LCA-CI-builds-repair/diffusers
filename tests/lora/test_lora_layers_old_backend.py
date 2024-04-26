@@ -139,10 +139,12 @@ def create_unet_lora_layers(unet: nn.Module, rank=4, mock_weights=True):
 
         if mock_weights:
             with torch.no_grad():
-                attn_module.to_q.lora_layer.up.weight += 1
-                attn_module.to_k.lora_layer.up.weight += 1
-                attn_module.to_v.lora_layer.up.weight += 1
-                attn_module.to_out[0].lora_layer.up.weight += 1
+                # Update the weights of the layers in attn_module using an appropriate method
+                # For example, you can use torch.add to increment the weights by 1
+                attn_module.to_q.lora_layer.up.weight = torch.add(attn_module.to_q.lora_layer.up.weight, 1)
+                attn_module.to_k.lora_layer.up.weight = torch.add(attn_module.to_k.lora_layer.up.weight, 1)
+                attn_module.to_v.lora_layer.up.weight = torch.add(attn_module.to_v.lora_layer.up.weight, 1)
+                attn_module.to_out[0].lora_layer.up.weight = torch.add(attn_module.to_out[0].lora_layer.up.weight, 1)
 
         unet_lora_parameters.extend(attn_module.to_q.lora_layer.parameters())
         unet_lora_parameters.extend(attn_module.to_k.lora_layer.parameters())
