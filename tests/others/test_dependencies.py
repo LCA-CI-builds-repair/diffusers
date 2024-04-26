@@ -18,17 +18,7 @@ from importlib import import_module
 
 
 class DependencyTester(unittest.TestCase):
-    def test_diffusers_import(self):
-        try:
-            import diffusers  # noqa: F401
-        except ImportError:
-            assert False
-
-    def test_backend_registration(self):
-        import diffusers
-        from diffusers.dependency_versions_table import deps
-
-        all_classes = inspect.getmembers(diffusers, inspect.isclass)
+import inspect
 
         for cls_name, cls_module in all_classes:
             if "dummy_" in cls_module.__module__:

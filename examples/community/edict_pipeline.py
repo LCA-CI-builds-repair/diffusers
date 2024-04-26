@@ -144,7 +144,6 @@ class EDICTPipeline(DiffusionPipeline):
         generator: Optional[torch.Generator] = None,
     ):
         do_classifier_free_guidance = guidance_scale > 1.0
-
         image = image.to(device=self.device, dtype=text_embeds.dtype)
         latent = self.vae.encode(image).latent_dist.sample(generator)
 
@@ -184,7 +183,6 @@ class EDICTPipeline(DiffusionPipeline):
                 coupled_latents[k] = model_input
 
         return coupled_latents
-
     @torch.no_grad()
     def __call__(
         self,
@@ -198,7 +196,6 @@ class EDICTPipeline(DiffusionPipeline):
         generator: Optional[torch.Generator] = None,
         output_type: Optional[str] = "pil",
     ):
-        do_classifier_free_guidance = guidance_scale > 1.0
 
         image = self.image_processor.preprocess(image)
 

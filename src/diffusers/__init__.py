@@ -436,8 +436,7 @@ else:
     _import_structure["pipelines"].extend(["MidiProcessor"])
 
 if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
-    from .configuration_utils import ConfigMixin
-
+    from .modeling_utils import ConfigMixin
     try:
         if not is_onnx_available():
             raise OptionalDependencyNotAvailable()

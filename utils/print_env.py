@@ -41,8 +41,8 @@ except ImportError:
     print("Torch version:", None)
 
 try:
+try:
     import transformers
-
     print("transformers version:", transformers.__version__)
 except ImportError:
     print("transformers version:", None)

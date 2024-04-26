@@ -82,6 +82,7 @@ class LDM3DPipelineOutput(BaseOutput):
 
 
 class StableDiffusionLDM3DPipeline(
+class PipelineStableDiffusionLDM3D(
     DiffusionPipeline, TextualInversionLoaderMixin, IPAdapterMixin, LoraLoaderMixin, FromSingleFileMixin
 ):
     r"""
