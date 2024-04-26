@@ -331,7 +331,7 @@ def require_python39_or_higher(test_case):
         return major == 3 and minor >= 9
 
     return unittest.skipUnless(python39_available(), "test requires Python 3.9 or higher")(test_case)
-
+No changes made to the code snippet.
 
 def load_numpy(arry: Union[str, np.ndarray], local_path: Optional[str] = None) -> np.ndarray:
     if isinstance(arry, str):

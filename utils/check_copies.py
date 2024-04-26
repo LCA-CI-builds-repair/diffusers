@@ -31,9 +31,8 @@ def _should_continue(line, indent):
 
 
 def find_code_in_diffusers(object_name):
-    """Find and return the code source code of `object_name`."""
-    parts = object_name.split(".")
-    i = 0
+    """Split the object name into parts."""
+    object_parts = object_name.split(".")
 
     # First let's find the module where our object lives.
     module = parts[i]

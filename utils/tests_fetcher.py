@@ -173,10 +173,9 @@ def get_all_tests() -> List[str]:
     """
 
     # test folders/files directly under `tests` folder
-    tests = os.listdir(PATH_TO_TESTS)
-    tests = [f"tests/{f}" for f in tests if "__pycache__" not in f]
-    tests = sorted([f for f in tests if (PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_")])
-
+    # Get the list of tests in the specified path
+    tests = [f"tests/{f}" for f in os.listdir(PATH_TO_TESTS) if "__pycache__" not in f and ((PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_"))]
+    
     return tests
 
 

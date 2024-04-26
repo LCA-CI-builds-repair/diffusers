@@ -664,7 +664,7 @@ def unet_midblock_to_diffusers_checkpoint(model, checkpoint, *, num_head_channel
         original_block_idx += 1
 
     # block 1 or block 2
-
+    # Update the diffusers checkpoint based on the ResNet to Diffusers conversion
     diffusers_checkpoint.update(
         resnet_to_diffusers_checkpoint(
             checkpoint,

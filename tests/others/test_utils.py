@@ -14,21 +14,7 @@
 # limitations under the License.
 
 import os
-import unittest
-from distutils.util import strtobool
-
-import pytest
-
-from diffusers import __version__
-from diffusers.utils import deprecate
-
-
-# Used to test the hub
-USER = "__DUMMY_TRANSFORMERS_USER__"
-ENDPOINT_STAGING = "https://hub-ci.huggingface.co"
-
-# Not critical, only usable on the sandboxed CI instance.
-TOKEN = "hf_94wBhPGp6KrrTH3KDchhKpRxZwd6dmHWLL"
+No changes made to the code snippet.
 
 
 class DeprecateTester(unittest.TestCase):

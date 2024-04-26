@@ -173,7 +173,7 @@ class StableDiffusionModelEditingPipelineFastTests(
         sd_pipe.set_progress_bar_config(disable=None)
 
         inputs = self.get_dummy_inputs(device)
-        # the pipeline does not expect pndm so test if it raises error.
+        # Test that the pipeline raises ValueError when pndm is not expected
         with self.assertRaises(ValueError):
             _ = sd_pipe(**inputs).images
 
