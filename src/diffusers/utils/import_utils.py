@@ -199,14 +199,14 @@ try:
             raise ValueError("xformers is installed in your environment and requires PyTorch >= 1.12")
 
     logger.debug(f"Successfully imported xformers version {_xformers_version}")
-except importlib_metadata.PackageNotFoundError:
+except importlib.metadata.PackageNotFoundError:
     _xformers_available = False
 
 _k_diffusion_available = importlib.util.find_spec("k_diffusion") is not None
 try:
-    _k_diffusion_version = importlib_metadata.version("k_diffusion")
+    _k_diffusion_version = importlib.metadata.version("k_diffusion")
     logger.debug(f"Successfully imported k-diffusion version {_k_diffusion_version}")
-except importlib_metadata.PackageNotFoundError:
+except importlib.metadata.PackageNotFoundError:
     _k_diffusion_available = False
 
 _note_seq_available = importlib.util.find_spec("note_seq") is not None
