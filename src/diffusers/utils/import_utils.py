@@ -513,7 +513,6 @@ BACKENDS_MAPPING = OrderedDict(
         ("torchsde", (is_torchsde_available, TORCHSDE_IMPORT_ERROR)),
         ("invisible_watermark", (is_invisible_watermark_available, INVISIBLE_WATERMARK_IMPORT_ERROR)),
     ]
-)
 
 
 def requires_backends(obj, backends):

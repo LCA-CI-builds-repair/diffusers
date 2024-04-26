@@ -339,7 +339,6 @@ def get_weighted_text_embeddings_sdxl(
         weight_tensor = torch.tensor(prompt_weight_groups[i], dtype=torch.float16, device=device)
 
         token_tensor_2 = torch.tensor([prompt_token_groups_2[i]], dtype=torch.long, device=device)
-
         # use first text encoder
         prompt_embeds_1 = pipe.text_encoder(token_tensor.to(device), output_hidden_states=True)
         prompt_embeds_1_hidden_states = prompt_embeds_1.hidden_states[-2]
@@ -375,6 +374,7 @@ def get_weighted_text_embeddings_sdxl(
         neg_prompt_embeds_2_hidden_states = neg_prompt_embeds_2.hidden_states[-2]
         negative_pooled_prompt_embeds = neg_prompt_embeds_2[0]
 
+        neg_prompt_embeds_list = [neg_prompt_embeds_1_hidden_states, neg_prompt_embeds_2_hidden_states]
         neg_prompt_embeds_list = [neg_prompt_embeds_1_hidden_states, neg_prompt_embeds_2_hidden_states]
         neg_token_embedding = torch.concat(neg_prompt_embeds_list, dim=-1).squeeze(0)
 

@@ -165,7 +165,6 @@ def create_lora_3d_layers(model, mock_weights: bool = True):
                 lora_attn_procs[name].to_k_lora.up.weight += 1
                 lora_attn_procs[name].to_v_lora.up.weight += 1
                 lora_attn_procs[name].to_out_lora.up.weight += 1
-
     return lora_attn_procs
 
 

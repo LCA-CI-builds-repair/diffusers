@@ -280,4 +280,3 @@ setup(
     ]
     + [f"Programming Language :: Python :: 3.{i}" for i in range(8, version_range_max)],
     cmdclass={"deps_table_update": DepsTableUpdateCommand},
-)

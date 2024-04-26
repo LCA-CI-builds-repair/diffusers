@@ -23,7 +23,6 @@ class DependencyTester(unittest.TestCase):
             import diffusers  # noqa: F401
         except ImportError:
             assert False
-
     def test_backend_registration(self):
         import diffusers
         from diffusers.dependency_versions_table import deps

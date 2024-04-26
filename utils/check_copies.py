@@ -207,7 +207,6 @@ def check_copies(overwrite: bool = False):
             "Found the following copy inconsistencies:\n"
             + diff
             + "\nRun `make fix-copies` or `python utils/check_copies.py --fix_and_overwrite` to fix them."
-        )
 
 
 if __name__ == "__main__":
