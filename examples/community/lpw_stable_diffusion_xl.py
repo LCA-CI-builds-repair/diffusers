@@ -391,6 +391,11 @@ def get_weighted_text_embeddings_sdxl(
     negative_prompt_embeds = torch.cat(neg_embeds, dim=1)
 
     bs_embed, seq_len, _ = prompt_embeds.shape
+    
+    # Initialize pooled_prompt_embeds and negative_pooled_prompt_embeds
+    pooled_prompt_embeds = torch.zeros_like(prompt_embeds)
+    negative_pooled_prompt_embeds = torch.zeros_like(negative_prompt_embeds)
+
     # duplicate text embeddings for each generation per prompt, using mps friendly method
     prompt_embeds = prompt_embeds.repeat(1, num_images_per_prompt, 1)
     prompt_embeds = prompt_embeds.view(bs_embed * num_images_per_prompt, seq_len, -1)
@@ -399,13 +404,13 @@ def get_weighted_text_embeddings_sdxl(
     negative_prompt_embeds = negative_prompt_embeds.repeat(1, num_images_per_prompt, 1)
     negative_prompt_embeds = negative_prompt_embeds.view(bs_embed * num_images_per_prompt, seq_len, -1)
 
+    # Ensure proper shape for concatenation
     pooled_prompt_embeds = pooled_prompt_embeds.repeat(1, num_images_per_prompt, 1).view(
         bs_embed * num_images_per_prompt, -1
     )
     negative_pooled_prompt_embeds = negative_pooled_prompt_embeds.repeat(1, num_images_per_prompt, 1).view(
         bs_embed * num_images_per_prompt, -1
     )
-
     return prompt_embeds, negative_prompt_embeds, pooled_prompt_embeds, negative_pooled_prompt_embeds
 
 

@@ -48,6 +48,9 @@ def get_diffusers_versions():
 
 
 def init_hf_modules():
+import sys
+import os
+
     """
     Creates the cache directory for modules with an init, and adds it to the Python path.
     """
