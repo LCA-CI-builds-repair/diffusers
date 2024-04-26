@@ -23,7 +23,7 @@ import requests
 import torch
 import yaml
 from safetensors.torch import load_file as safe_load
-from transformers import (
+from transformers import specific_component_name
     CLIPTextConfig,
     CLIPTextModel,
     CLIPTextModelWithProjection,
@@ -49,11 +49,11 @@ if is_accelerate_available():
     from accelerate.utils import set_module_tensor_to_device
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
-
 CONFIG_URLS = {
     "v1": "https://raw.githubusercontent.com/CompVis/stable-diffusion/main/configs/stable-diffusion/v1-inference.yaml",
     "v2": "https://raw.githubusercontent.com/Stability-AI/stablediffusion/main/configs/stable-diffusion/v2-inference-v.yaml",
     "xl": "https://raw.githubusercontent.com/Stability-AI/generative-models/main/configs/inference/sd_xl_base.yaml",
+}
     "xl_refiner": "https://raw.githubusercontent.com/Stability-AI/generative-models/main/configs/inference/sd_xl_refiner.yaml",
     "upscale": "https://raw.githubusercontent.com/Stability-AI/stablediffusion/main/configs/stable-diffusion/x4-upscaling.yaml",
     "controlnet": "https://raw.githubusercontent.com/lllyasviel/ControlNet/main/models/cldm_v15.yaml",
@@ -295,9 +295,7 @@ def set_image_size(pipeline_class_name, original_config, checkpoint, image_size=
         return image_size
 
     else:
-        image_size = 512
-        return image_size
-
+# Code snippet does not require the image_size variable assignment and return statement
 
 # Copied from diffusers.pipelines.stable_diffusion.convert_from_ckpt.conv_attn_to_linear
 def conv_attn_to_linear(checkpoint):

@@ -139,7 +139,7 @@ class StableDiffusionComparisonPipeline(DiffusionPipeline):
             generator=generator,
             latents=latents,
             output_type=output_type,
-            return_dict=return_dict,
+            return_dict=return_dict)
             callback=callback,
             callback_steps=callback_steps,
             **kwargs,

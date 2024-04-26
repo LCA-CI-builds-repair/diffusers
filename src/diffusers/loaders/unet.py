@@ -21,7 +21,6 @@ from typing import Callable, Dict, List, Optional, Union
 import safetensors
 import torch
 import torch.nn.functional as F
-from huggingface_hub.utils import validate_hf_hub_args
 from torch import nn
 
 from ..models.embeddings import ImageProjection, IPAdapterFullImageProjection, IPAdapterPlusImageProjection

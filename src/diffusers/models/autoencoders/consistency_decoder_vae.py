@@ -15,7 +15,6 @@ from dataclasses import dataclass
 from typing import Dict, Optional, Tuple, Union
 
 import torch
-import torch.nn.functional as F
 from torch import nn
 
 from ...configuration_utils import ConfigMixin, register_to_config

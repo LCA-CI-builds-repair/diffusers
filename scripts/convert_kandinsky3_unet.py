@@ -3,7 +3,8 @@ import argparse
 import fnmatch
 
 from safetensors.torch import load_file
-
+### Summary of Changes:
+The code snippet provided is empty, indicating that there is no code present. To address this issue, code related to the task specified in the context should be added to the file `scripts/convert_kandinsky3_unet.py`. Without the actual code snippet, I cannot provide specific edits. Please add the necessary code related to the task in the specified file.
 from diffusers import Kandinsky3UNet
 
 

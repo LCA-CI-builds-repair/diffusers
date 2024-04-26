@@ -179,7 +179,6 @@ def get_all_tests() -> List[str]:
 
     return tests
 
-
 def diff_is_docstring_only(repo: Repo, branching_point: str, filename: str) -> bool:
     """
     Check if the diff is only in docstrings (or comments and whitespace) in a filename.

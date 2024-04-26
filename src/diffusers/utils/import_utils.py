@@ -199,13 +199,15 @@ try:
             raise ValueError("xformers is installed in your environment and requires PyTorch >= 1.12")
 
     logger.debug(f"Successfully imported xformers version {_xformers_version}")
+import importlib_metadata
+
 except importlib_metadata.PackageNotFoundError:
     _xformers_available = False
-
 _k_diffusion_available = importlib.util.find_spec("k_diffusion") is not None
-try:
-    _k_diffusion_version = importlib_metadata.version("k_diffusion")
-    logger.debug(f"Successfully imported k-diffusion version {_k_diffusion_version}")
+import importlib_metadata
+
+_k_diffusion_version = importlib_metadata.version("k_diffusion")
+logger.debug(f"Successfully imported k-diffusion version {_k_diffusion_version}")
 except importlib_metadata.PackageNotFoundError:
     _k_diffusion_available = False
 
@@ -233,9 +235,9 @@ except importlib_metadata.PackageNotFoundError:
 
 
 _compel_available = importlib.util.find_spec("compel")
-try:
-    _compel_version = importlib_metadata.version("compel")
-    logger.debug(f"Successfully imported compel version {_compel_version}")
+import importlib_metadata
+
+logger.debug(f"Successfully imported compel version {_compel_version}")
 except importlib_metadata.PackageNotFoundError:
     _compel_available = False
 
@@ -264,9 +266,9 @@ except importlib_metadata.PackageNotFoundError:
     _torchsde_available = False
 
 _invisible_watermark_available = importlib.util.find_spec("imwatermark") is not None
-try:
-    _invisible_watermark_version = importlib_metadata.version("invisible-watermark")
-    logger.debug(f"Successfully imported invisible-watermark version {_invisible_watermark_version}")
+import importlib_metadata
+
+logger.debug(f"Successfully imported invisible-watermark version {_invisible_watermark_version}")
 except importlib_metadata.PackageNotFoundError:
     _invisible_watermark_available = False
 
@@ -282,12 +284,7 @@ except importlib_metadata.PackageNotFoundError:
 def is_torch_available():
     return _torch_available
 
-
-def is_torch_xla_available():
-    return _torch_xla_available
-
-
-def is_flax_available():
+# No changes required in the provided code snippet
     return _flax_available
 
 

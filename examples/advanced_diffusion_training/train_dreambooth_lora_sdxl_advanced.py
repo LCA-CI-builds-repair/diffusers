@@ -123,7 +123,7 @@ from safetensors.torch import load_file
         """
         diffusers_example_pivotal = f"""embedding_path = hf_hub_download(repo_id='{repo_id}', filename='{embeddings_filename}.safetensors' repo_type="model")
 state_dict = load_file(embedding_path)
-pipeline.load_textual_inversion(state_dict["clip_l"], token=[{ti_keys}], text_encoder=pipeline.text_encoder, tokenizer=pipeline.tokenizer)
+pipeline.load_textual_inversion(state_dict["clip_l"], token=ti_keys, text_encoder=pipeline.text_encoder, tokenizer=pipeline.tokenizer)
 pipeline.load_textual_inversion(state_dict["clip_g"], token=[{ti_keys}], text_encoder=pipeline.text_encoder_2, tokenizer=pipeline.tokenizer_2)
         """
         webui_example_pivotal = f"""- *Embeddings*: download **[`{embeddings_filename}.safetensors` here 💾](/{repo_id}/blob/main/{embeddings_filename}.safetensors)**.
