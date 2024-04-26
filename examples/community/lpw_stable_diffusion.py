@@ -410,6 +410,10 @@ def preprocess_mask(mask, batch_size, scale_factor=8):
 
 
 class StableDiffusionLongPromptWeightingPipeline(
+from diffusions import DiffusionPipeline
+from loaders import TextualInversionLoaderMixin, LoraLoaderMixin, FromSingleFileMixin
+
+class LPWStableDiffusionPipeline(
     DiffusionPipeline, TextualInversionLoaderMixin, LoraLoaderMixin, FromSingleFileMixin
 ):
     r"""

@@ -267,6 +267,12 @@ class AttnProcessorWithHook(AttnProcessor2_0):
 
 
 class LLMGroundedDiffusionPipeline(
+from diffusions import DiffusionPipeline
+from loaders import TextualInversionLoaderMixin, LoraLoaderMixin
+from adapters import IPAdapterMixin
+from mixins import FromSingleFileMixin
+
+class LLMGroundedDiffusionPipeline(
     DiffusionPipeline, TextualInversionLoaderMixin, LoraLoaderMixin, IPAdapterMixin, FromSingleFileMixin
 ):
     r"""

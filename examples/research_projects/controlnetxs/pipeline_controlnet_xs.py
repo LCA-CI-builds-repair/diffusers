@@ -44,6 +44,11 @@ logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
 
 class StableDiffusionControlNetXSPipeline(
+from diffusions import DiffusionPipeline
+from loaders import TextualInversionLoaderMixin, LoraLoaderMixin
+from mixins import FromSingleFileMixin
+
+class PipelineControlNetXS(
     DiffusionPipeline, TextualInversionLoaderMixin, LoraLoaderMixin, FromSingleFileMixin
 ):
     r"""
