@@ -189,6 +189,9 @@ try:
     logger.debug(f"Successfully imported accelerate version {_accelerate_version}")
 except importlib_metadata.PackageNotFoundError:
     _accelerate_available = False
+import importlib.util
+import importlib_metadata
+from packaging import version
 
 _xformers_available = importlib.util.find_spec("xformers") is not None
 try:

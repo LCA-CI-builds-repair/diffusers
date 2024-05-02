@@ -350,7 +350,7 @@ def get_weighted_text_embeddings_sdxl(
         pooled_prompt_embeds = prompt_embeds_2[0]
 
         prompt_embeds_list = [prompt_embeds_1_hidden_states, prompt_embeds_2_hidden_states]
-        token_embedding = torch.concat(prompt_embeds_list, dim=-1).squeeze(0)
+        token_embedding = torch.cat(prompt_embeds_list, dim=-1).squeeze(0)
 
         for j in range(len(weight_tensor)):
             if weight_tensor[j] != 1.0:
@@ -376,7 +376,7 @@ def get_weighted_text_embeddings_sdxl(
         negative_pooled_prompt_embeds = neg_prompt_embeds_2[0]
 
         neg_prompt_embeds_list = [neg_prompt_embeds_1_hidden_states, neg_prompt_embeds_2_hidden_states]
-        neg_token_embedding = torch.concat(neg_prompt_embeds_list, dim=-1).squeeze(0)
+        neg_token_embedding = torch.cat(neg_prompt_embeds_list, dim=-1).squeeze(0)
 
         for z in range(len(neg_weight_tensor)):
             if neg_weight_tensor[z] != 1.0:
