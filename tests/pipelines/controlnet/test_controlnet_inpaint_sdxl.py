@@ -296,9 +296,8 @@ class ControlNetPipelineSDXLFastTests(
         # make sure that it's equal
         assert np.abs(image_slice.flatten() - expected_slice).max() < 1e-4
 
-    # TODO(Patrick, Sayak) - skip for now as this requires more refiner tests
     def test_save_load_optional_components(self):
+        # Implement the necessary test code here
         pass
-
     def test_float16_inference(self):
         super().test_float16_inference(expected_max_diff=5e-1)
