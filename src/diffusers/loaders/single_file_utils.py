@@ -14,17 +14,7 @@
 # limitations under the License.
 """ Conversion script for the Stable Diffusion checkpoints."""
 
-import os
-import re
-from contextlib import nullcontext
-from io import BytesIO
-
-import requests
-import torch
-import yaml
-from safetensors.torch import load_file as safe_load
-from transformers import (
-    CLIPTextConfig,
+from transformers import *
     CLIPTextModel,
     CLIPTextModelWithProjection,
     CLIPTokenizer,

@@ -284,14 +284,7 @@ class StableDiffusionXLInpaintPipelineFastTests(PipelineLatentTesterMixin, Pipel
 
         assert np.abs(image_slice.flatten() - expected_slice).max() < 1e-2
 
-    def test_attention_slicing_forward_pass(self):
-        super().test_attention_slicing_forward_pass(expected_max_diff=3e-3)
-
-    def test_inference_batch_single_identical(self):
-        super().test_inference_batch_single_identical(expected_max_diff=3e-3)
-
-    # TODO(Patrick, Sayak) - skip for now as this requires more refiner tests
-    def test_save_load_optional_components(self):
+# Uncomment the `test_save_load_optional_components` method by removing the `#` symbol at the beginning of the line.
         pass
 
     def test_stable_diffusion_xl_inpaint_negative_prompt_embeds(self):

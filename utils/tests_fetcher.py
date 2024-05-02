@@ -172,12 +172,10 @@ def get_all_tests() -> List[str]:
     - test files under `tests`: `test_modeling_common.py`, `test_tokenization_common.py`, etc.
     """
 
-    # test folders/files directly under `tests` folder
-    tests = os.listdir(PATH_TO_TESTS)
-    tests = [f"tests/{f}" for f in tests if "__pycache__" not in f]
-    tests = sorted([f for f in tests if (PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_")])
-
-    return tests
+def filter_and_sort_tests(tests):
+    filtered_tests = [test for test in tests if "__pycache__" not in test]
+    sorted_tests = sorted(filtered_tests)
+    return sorted_tests
 
 
 def diff_is_docstring_only(repo: Repo, branching_point: str, filename: str) -> bool:

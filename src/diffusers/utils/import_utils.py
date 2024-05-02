@@ -205,14 +205,14 @@ except importlib_metadata.PackageNotFoundError:
 _k_diffusion_available = importlib.util.find_spec("k_diffusion") is not None
 try:
     _k_diffusion_version = importlib_metadata.version("k_diffusion")
-    logger.debug(f"Successfully imported k-diffusion version {_k_diffusion_version}")
-except importlib_metadata.PackageNotFoundError:
-    _k_diffusion_available = False
+import logging
 
-_note_seq_available = importlib.util.find_spec("note_seq") is not None
+logger = logging.getLogger(__name__)
+
 try:
-    _note_seq_version = importlib_metadata.version("note_seq")
-    logger.debug(f"Successfully imported note-seq version {_note_seq_version}")
+    # Code for importing and logging the note-seq version
+except Exception as e:
+    logger.error(f"An error occurred: {e}")
 except importlib_metadata.PackageNotFoundError:
     _note_seq_available = False
 

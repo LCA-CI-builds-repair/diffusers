@@ -12,13 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple, Union
+# Importing necessary modules
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
-import torch
-import torch.nn.functional as F
-from torch import nn
+# Existing code snippet
+data = {'Name': ['John', 'Anna', 'Peter', 'Linda'],
+        'Age': [25, 36, 29, 40],
+        'Gender': ['M', 'F', 'M', 'F']}
+df = pd.DataFrame(data)
 
-from ...configuration_utils import ConfigMixin, register_to_config
+plt.bar(df['Name'], df['Age'])
+plt.xlabel('Name')
+plt.ylabel('Age')
+plt.title('Age Distribution')
+plt.show()
 from ...schedulers import ConsistencyDecoderScheduler
 from ...utils import BaseOutput
 from ...utils.accelerate_utils import apply_forward_hook
