@@ -26,8 +26,8 @@ from ..attention_processor import (
     AttentionProcessor,
     AttnAddedKVProcessor,
     AttnProcessor,
+    AutoencoderKLOutput
 )
-from ..modeling_outputs import AutoencoderKLOutput
 from ..modeling_utils import ModelMixin
 from .vae import Decoder, DecoderOutput, DiagonalGaussianDistribution, Encoder
 

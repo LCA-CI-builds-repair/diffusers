@@ -42,7 +42,8 @@ except ImportError:
 
 try:
     import transformers
-
     print("transformers version:", transformers.__version__)
+except ImportError:
+    print("The 'transformers' module is not installed.")
 except ImportError:
     print("transformers version:", None)

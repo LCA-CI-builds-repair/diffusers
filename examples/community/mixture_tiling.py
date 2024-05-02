@@ -13,13 +13,15 @@ from diffusers.schedulers import DDIMScheduler, LMSDiscreteScheduler, PNDMSchedu
 from diffusers.utils import logging
 
 
+import logging
+
 try:
     from ligo.segments import segment
     from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
 except ImportError:
     raise ImportError("Please install transformers and ligo-segments to use the mixture pipeline")
 
-logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
+logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
 EXAMPLE_DOC_STRING = """
     Examples:

@@ -427,14 +427,14 @@ try:
 except OptionalDependencyNotAvailable:
     from .utils import dummy_note_seq_objects  # noqa F403
 
+_import_structure = {}
+
+if condition:
     _import_structure["utils.dummy_note_seq_objects"] = [
         name for name in dir(dummy_note_seq_objects) if not name.startswith("_")
     ]
-
-
 else:
     _import_structure["pipelines"].extend(["MidiProcessor"])
-
 if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
     from .configuration_utils import ConfigMixin
 

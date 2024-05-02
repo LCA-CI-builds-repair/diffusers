@@ -12,11 +12,6 @@ from diffusers.schedulers import KarrasDiffusionSchedulers
 from diffusers.utils import USE_PEFT_BACKEND
 
 
-try:
-    from compel import Compel
-except ImportError:
-    Compel = None
-
 KCOMM = "ADDCOMM"
 KBRK = "BREAK"
 

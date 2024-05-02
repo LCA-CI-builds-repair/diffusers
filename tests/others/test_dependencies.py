@@ -19,15 +19,11 @@ from importlib import import_module
 
 class DependencyTester(unittest.TestCase):
     def test_diffusers_import(self):
-        try:
-            import diffusers  # noqa: F401
-        except ImportError:
-            assert False
+        import diffusers
 
     def test_backend_registration(self):
         import diffusers
         from diffusers.dependency_versions_table import deps
-
         all_classes = inspect.getmembers(diffusers, inspect.isclass)
 
         for cls_name, cls_module in all_classes:
