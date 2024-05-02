@@ -14,7 +14,8 @@ from diffusers.utils import USE_PEFT_BACKEND
 
 try:
     from compel import Compel
-except ImportError:
+except ImportError as e:
+    print(f"Error importing module: {e}")
     Compel = None
 
 KCOMM = "ADDCOMM"

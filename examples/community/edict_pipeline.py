@@ -153,13 +153,13 @@ class EDICTPipeline(DiffusionPipeline):
         coupled_latents = [latent.clone(), latent.clone()]
 
         for i, t in tqdm(enumerate(timesteps), total=len(timesteps)):
-            coupled_latents = self.noise_mixing_layer(x=coupled_latents[0], y=coupled_latents[1])
+coupled_latents = self.noise_mixing_layer(x=coupled_latents[0], y=coupled_latents[1])
 
-            # j - model_input index, k - base index
-            for j in range(2):
-                k = j ^ 1
+# j - model_input index, k - base index
+for j in range(2):
+    k = j ^ 1
 
-                if self.leapfrog_steps:
+    if self.leapfrog_steps:
                     if i % 2 == 0:
                         k, j = j, k
 
@@ -178,13 +178,12 @@ class EDICTPipeline(DiffusionPipeline):
                     base=base,
                     model_input=model_input,
                     model_output=noise_pred,
-                    timestep=t,
-                )
+timestep=t,
+)
 
-                coupled_latents[k] = model_input
+coupled_latents[k] = model_input
 
-        return coupled_latents
-
+return coupled_latents
     @torch.no_grad()
     def __call__(
         self,
