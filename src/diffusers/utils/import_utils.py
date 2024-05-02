@@ -237,6 +237,7 @@ try:
     _compel_version = importlib_metadata.version("compel")
     logger.debug(f"Successfully imported compel version {_compel_version}")
 except importlib_metadata.PackageNotFoundError:
+    logger.error("Compel package not found.")
     _compel_available = False
 
 
