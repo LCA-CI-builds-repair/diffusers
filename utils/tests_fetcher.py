@@ -178,8 +178,6 @@ def get_all_tests() -> List[str]:
     tests = sorted([f for f in tests if (PATH_TO_REPO / f).is_dir() or f.startswith("tests/test_")])
 
     return tests
-
-
 def diff_is_docstring_only(repo: Repo, branching_point: str, filename: str) -> bool:
     """
     Check if the diff is only in docstrings (or comments and whitespace) in a filename.
