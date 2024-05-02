@@ -130,9 +130,10 @@ class DPMSolverSinglestepScheduler(SchedulerMixin, ConfigMixin):
             contains the predicted Gaussian variance.
     """
 
+    from diffusers.schedulers.karras_diffusion_scheduler import KarrasDiffusionSchedulers
+
     _compatibles = [e.name for e in KarrasDiffusionSchedulers]
     order = 1
-
     @register_to_config
     def __init__(
         self,
@@ -846,8 +847,6 @@ class DPMSolverSinglestepScheduler(SchedulerMixin, ConfigMixin):
             self.model_outputs[i] = self.model_outputs[i + 1]
         self.model_outputs[-1] = model_output
 
-        order = self.order_list[self.step_index]
-
         #  For img2img denoising might start with order>1 which is not possible
         #  In this case make sure that the first two steps are both order=1
         while self.model_outputs[-order] is None:
@@ -857,6 +856,7 @@ class DPMSolverSinglestepScheduler(SchedulerMixin, ConfigMixin):
         if order == 1:
             self.sample = sample
 
+        prev_sample = self.singlestep_dpm_solver_update(self.model_outputs, sample=self.sample, order=order)
         prev_sample = self.singlestep_dpm_solver_update(self.model_outputs, sample=self.sample, order=order)
 
         # upon completion increase step index by one
