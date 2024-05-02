@@ -953,7 +953,7 @@ def infer_tests_to_run(
     # in order to trigger pipeline tests even if no code change at all
     if "tests/utils/tiny_model_summary.json" in modified_files:
         test_files_to_run = ["tests"]
-        any(f.split(os.path.sep)[0] == "utils" for f in modified_files)
+        is_utils_modified = any(f.split(os.path.sep)[0] == "utils" for f in modified_files)
     else:
         # All modified tests need to be run.
         test_files_to_run = [
