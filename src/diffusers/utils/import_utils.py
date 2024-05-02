@@ -202,11 +202,16 @@ try:
 except importlib_metadata.PackageNotFoundError:
     _xformers_available = False
 
+import importlib.util
+import importlib.metadata as importlib_metadata
+
 _k_diffusion_available = importlib.util.find_spec("k_diffusion") is not None
 try:
     _k_diffusion_version = importlib_metadata.version("k_diffusion")
     logger.debug(f"Successfully imported k-diffusion version {_k_diffusion_version}")
 except importlib_metadata.PackageNotFoundError:
+    # Handle the exception here, e.g., log an error message or raise an exception
+    logger.error("Failed to import k-diffusion package")
     _k_diffusion_available = False
 
 _note_seq_available = importlib.util.find_spec("note_seq") is not None
