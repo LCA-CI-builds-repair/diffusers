@@ -189,7 +189,6 @@ try:
     logger.debug(f"Successfully imported accelerate version {_accelerate_version}")
 except importlib_metadata.PackageNotFoundError:
     _accelerate_available = False
-
 _xformers_available = importlib.util.find_spec("xformers") is not None
 try:
     _xformers_version = importlib_metadata.version("xformers")
@@ -197,7 +196,8 @@ try:
         _torch_version = importlib_metadata.version("torch")
         if version.Version(_torch_version) < version.Version("1.12"):
             raise ValueError("xformers is installed in your environment and requires PyTorch >= 1.12")
-
+except:
+    # Handle exceptions here
     logger.debug(f"Successfully imported xformers version {_xformers_version}")
 except importlib_metadata.PackageNotFoundError:
     _xformers_available = False
