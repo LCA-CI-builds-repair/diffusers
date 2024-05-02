@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import os
+import torch
 from typing import Dict, Optional, Union
 
-import torch
 from huggingface_hub.utils import validate_hf_hub_args
 from safetensors import safe_open
 
