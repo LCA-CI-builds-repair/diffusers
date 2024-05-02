@@ -218,8 +218,8 @@ def create_custom_diffusion_layers(model, mock_weights: bool = True):
             if mock_weights:
                 # add 1 to weights to mock trained weights
                 with torch.no_grad():
-                    custom_diffusion_attn_procs[name].to_k_custom_diffusion.weight += 1
-                    custom_diffusion_attn_procs[name].to_v_custom_diffusion.weight += 1
+                    custom_diffusion_attn_procs[name].to_k_custom_diffusion.weight.data.add_(1)
+                    custom_diffusion_attn_procs[name].to_v_custom_diffusion.weight.data.add_(1)
         else:
             custom_diffusion_attn_procs[name] = CustomDiffusionAttnProcessor(
                 train_kv=False,

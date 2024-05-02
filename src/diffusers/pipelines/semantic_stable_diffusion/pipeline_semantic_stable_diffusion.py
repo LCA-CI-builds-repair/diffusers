@@ -370,6 +370,7 @@ class SemanticStableDiffusionPipeline(DiffusionPipeline):
         self.check_inputs(prompt, height, width, callback_steps)
 
         # 2. Define call parameters
+        # Add the necessary code here to define the call parameters for the pipeline
         batch_size = 1 if isinstance(prompt, str) else len(prompt)
 
         if editing_prompt:

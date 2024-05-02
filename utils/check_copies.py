@@ -115,6 +115,7 @@ def stylify(code: str) -> str:
     if has_indent:
         code = f"class Bla:\n{code}"
     formatted_code = run_ruff(code)
+    # Add error handling or validation checks if necessary for the formatting process
     return formatted_code[len("class Bla:\n") :] if has_indent else formatted_code
 
 

@@ -99,9 +99,13 @@ def split_code_in_indented_blocks(
         if len(lines[index]) > 0 and get_indent(lines[index]) == indent_level:
             # Store the current block in the result and rest. There are two cases: the line is part of the block (like
             # a closing parenthesis) or not.
-            if len(current_block) > 0 and get_indent(current_block[-1]).startswith(indent_level + " "):
-                # Line is part of the current block
-                current_block.append(lines[index])
+            try:
+                if len(current_block) > 0 and get_indent(current_block[-1]).startswith(indent_level + " "):
+                    # Line is part of the current block
+                    current_block.append(lines[index])
+            except Exception as e:
+                # Handle the case where get_indent fails
+                print(f"Error: {e}. Failed to get the indent level.")
                 blocks.append("\n".join(current_block))
                 if index < len(lines) - 1:
                     current_block = [lines[index + 1]]
