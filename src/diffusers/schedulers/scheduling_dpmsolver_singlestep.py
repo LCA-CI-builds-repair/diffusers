@@ -856,7 +856,6 @@ class DPMSolverSinglestepScheduler(SchedulerMixin, ConfigMixin):
         # For single-step solvers, we use the initial value at each time with order = 1.
         if order == 1:
             self.sample = sample
-
         prev_sample = self.singlestep_dpm_solver_update(self.model_outputs, sample=self.sample, order=order)
 
         # upon completion increase step index by one

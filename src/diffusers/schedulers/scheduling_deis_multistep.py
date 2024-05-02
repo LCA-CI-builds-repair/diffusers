@@ -122,7 +122,6 @@ class DEISMultistepScheduler(SchedulerMixin, ConfigMixin):
 
     _compatibles = [e.name for e in KarrasDiffusionSchedulers]
     order = 1
-
     @register_to_config
     def __init__(
         self,
