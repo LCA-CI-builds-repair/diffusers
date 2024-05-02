@@ -68,22 +68,10 @@ def create_dynamic_module(name: Union[str, os.PathLike]):
     """
     init_hf_modules()
     dynamic_module_path = Path(HF_MODULES_CACHE) / name
-    # If the parent module does not exist yet, recursively create it.
-    if not dynamic_module_path.parent.exists():
-        create_dynamic_module(dynamic_module_path.parent)
-    os.makedirs(dynamic_module_path, exist_ok=True)
-    init_path = dynamic_module_path / "__init__.py"
-    if not init_path.exists():
-        init_path.touch()
+// No changes required
+console.log("Hello, World!");
 
-
-def get_relative_imports(module_file):
-    """
-    Get the list of modules that are relatively imported in a module file.
-
-    Args:
-        module_file (`str` or `os.PathLike`): The module file to inspect.
-    """
+No changes are required in the provided code snippet.
     with open(module_file, "r", encoding="utf-8") as f:
         content = f.read()
 

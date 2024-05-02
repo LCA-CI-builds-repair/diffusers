@@ -208,7 +208,6 @@ try:
     logger.debug(f"Successfully imported k-diffusion version {_k_diffusion_version}")
 except importlib_metadata.PackageNotFoundError:
     _k_diffusion_available = False
-
 _note_seq_available = importlib.util.find_spec("note_seq") is not None
 try:
     _note_seq_version = importlib_metadata.version("note_seq")

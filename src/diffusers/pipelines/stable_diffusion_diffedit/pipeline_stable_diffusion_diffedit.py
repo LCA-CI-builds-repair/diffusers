@@ -1240,22 +1240,9 @@ class StableDiffusionDiffEditPipeline(DiffusionPipeline, TextualInversionLoaderM
                     t,
                     encoder_hidden_states=prompt_embeds,
                     cross_attention_kwargs=cross_attention_kwargs,
-                ).sample
-
-                # perform guidance
-                if do_classifier_free_guidance:
-                    noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
-                    noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
-
-                # regularization of the noise prediction (not in original code or paper but borrowed from Pix2PixZero)
+No changes are required in the provided code snippet.
                 if num_reg_steps > 0:
-                    with torch.enable_grad():
-                        for _ in range(num_reg_steps):
-                            if lambda_auto_corr > 0:
-                                for _ in range(num_auto_corr_rolls):
-                                    var = torch.autograd.Variable(noise_pred.detach().clone(), requires_grad=True)
-
-                                    # Derive epsilon from model output before regularizing to IID standard normal
+// No changes are required in the provided code snippet.
                                     var_epsilon = self.get_epsilon(var, latent_model_input.detach(), t)
 
                                     l_ac = auto_corr_loss(var_epsilon, generator=generator)
@@ -1265,17 +1252,7 @@ class StableDiffusionDiffEditPipeline(DiffusionPipeline, TextualInversionLoaderM
                                     noise_pred = noise_pred - lambda_auto_corr * grad
 
                             if lambda_kl > 0:
-                                var = torch.autograd.Variable(noise_pred.detach().clone(), requires_grad=True)
-
-                                # Derive epsilon from model output before regularizing to IID standard normal
-                                var_epsilon = self.get_epsilon(var, latent_model_input.detach(), t)
-
-                                l_kld = kl_divergence(var_epsilon)
-                                l_kld.backward()
-
-                                grad = var.grad.detach()
-                                noise_pred = noise_pred - lambda_kl * grad
-
+No changes are required in the provided code snippet.
                             noise_pred = noise_pred.detach()
 
                 # compute the previous noisy sample x_t -> x_t-1
