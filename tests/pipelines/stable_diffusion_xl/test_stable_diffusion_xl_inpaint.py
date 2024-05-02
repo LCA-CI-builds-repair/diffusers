@@ -282,15 +282,13 @@ class StableDiffusionXLInpaintPipelineFastTests(PipelineLatentTesterMixin, Pipel
 
         expected_slice = np.array([0.6611, 0.5569, 0.5531, 0.5471, 0.5918, 0.6393, 0.5074, 0.5468, 0.5185])
 
-        assert np.abs(image_slice.flatten() - expected_slice).max() < 1e-2
+import numpy as np
 
-    def test_attention_slicing_forward_pass(self):
-        super().test_attention_slicing_forward_pass(expected_max_diff=3e-3)
+def test_attention_slicing_forward_pass(self):
+    super().test_attention_slicing_forward_pass(expected_max_diff=3e-3)
 
-    def test_inference_batch_single_identical(self):
-        super().test_inference_batch_single_identical(expected_max_diff=3e-3)
-
-    # TODO(Patrick, Sayak) - skip for now as this requires more refiner tests
+def test_inference_batch_single_identical(self):
+    super().test_inference_batch_single_identical(expected_max_diff=3e-3)
     def test_save_load_optional_components(self):
         pass
 

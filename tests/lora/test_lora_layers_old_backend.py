@@ -86,10 +86,12 @@ def create_lora_layers(model, mock_weights: bool = True):
                 lora_attn_procs[name].to_q_lora.up.weight += 1
                 lora_attn_procs[name].to_k_lora.up.weight += 1
                 lora_attn_procs[name].to_v_lora.up.weight += 1
-                lora_attn_procs[name].to_out_lora.up.weight += 1
+import torch.nn
+
+def modify_lora_weights(lora_attn_procs, name):
+    lora_attn_procs[name].to_out_lora.up.weight += 1
 
     return lora_attn_procs
-
 
 def create_unet_lora_layers(unet: nn.Module):
     lora_attn_procs = {}

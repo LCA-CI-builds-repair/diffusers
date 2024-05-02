@@ -338,19 +338,7 @@ def get_weighted_text_embeddings_sdxl(
         token_tensor = torch.tensor([prompt_token_groups[i]], dtype=torch.long, device=device)
         weight_tensor = torch.tensor(prompt_weight_groups[i], dtype=torch.float16, device=device)
 
-        token_tensor_2 = torch.tensor([prompt_token_groups_2[i]], dtype=torch.long, device=device)
-
-        # use first text encoder
-        prompt_embeds_1 = pipe.text_encoder(token_tensor.to(device), output_hidden_states=True)
-        prompt_embeds_1_hidden_states = prompt_embeds_1.hidden_states[-2]
-
-        # use second text encoder
-        prompt_embeds_2 = pipe.text_encoder_2(token_tensor_2.to(device), output_hidden_states=True)
-        prompt_embeds_2_hidden_states = prompt_embeds_2.hidden_states[-2]
-        pooled_prompt_embeds = prompt_embeds_2[0]
-
-        prompt_embeds_list = [prompt_embeds_1_hidden_states, prompt_embeds_2_hidden_states]
-        token_embedding = torch.concat(prompt_embeds_list, dim=-1).squeeze(0)
+        token_embedding = torch.cat(prompt_embeds_list, dim=-1).squeeze(0)
 
         for j in range(len(weight_tensor)):
             if weight_tensor[j] != 1.0:
@@ -361,22 +349,7 @@ def get_weighted_text_embeddings_sdxl(
         token_embedding = token_embedding.unsqueeze(0)
         embeds.append(token_embedding)
 
-        # get negative prompt embeddings with weights
-        neg_token_tensor = torch.tensor([neg_prompt_token_groups[i]], dtype=torch.long, device=device)
-        neg_token_tensor_2 = torch.tensor([neg_prompt_token_groups_2[i]], dtype=torch.long, device=device)
-        neg_weight_tensor = torch.tensor(neg_prompt_weight_groups[i], dtype=torch.float16, device=device)
-
-        # use first text encoder
-        neg_prompt_embeds_1 = pipe.text_encoder(neg_token_tensor.to(device), output_hidden_states=True)
-        neg_prompt_embeds_1_hidden_states = neg_prompt_embeds_1.hidden_states[-2]
-
-        # use second text encoder
-        neg_prompt_embeds_2 = pipe.text_encoder_2(neg_token_tensor_2.to(device), output_hidden_states=True)
-        neg_prompt_embeds_2_hidden_states = neg_prompt_embeds_2.hidden_states[-2]
-        negative_pooled_prompt_embeds = neg_prompt_embeds_2[0]
-
-        neg_prompt_embeds_list = [neg_prompt_embeds_1_hidden_states, neg_prompt_embeds_2_hidden_states]
-        neg_token_embedding = torch.concat(neg_prompt_embeds_list, dim=-1).squeeze(0)
+        neg_token_embedding = torch.cat(neg_prompt_embeds_list, dim=-1).squeeze(0)
 
         for z in range(len(neg_weight_tensor)):
             if neg_weight_tensor[z] != 1.0:
@@ -391,20 +364,13 @@ def get_weighted_text_embeddings_sdxl(
     negative_prompt_embeds = torch.cat(neg_embeds, dim=1)
 
     bs_embed, seq_len, _ = prompt_embeds.shape
-    # duplicate text embeddings for each generation per prompt, using mps friendly method
-    prompt_embeds = prompt_embeds.repeat(1, num_images_per_prompt, 1)
-    prompt_embeds = prompt_embeds.view(bs_embed * num_images_per_prompt, seq_len, -1)
+    prompt_embeds = prompt_embeds.repeat(1, num_images_per_prompt, 1).view(bs_embed * num_images_per_prompt, seq_len, -1)
 
     seq_len = negative_prompt_embeds.shape[1]
-    negative_prompt_embeds = negative_prompt_embeds.repeat(1, num_images_per_prompt, 1)
-    negative_prompt_embeds = negative_prompt_embeds.view(bs_embed * num_images_per_prompt, seq_len, -1)
+    negative_prompt_embeds = negative_prompt_embeds.repeat(1, num_images_per_prompt, 1).view(bs_embed * num_images_per_prompt, seq_len, -1)
 
-    pooled_prompt_embeds = pooled_prompt_embeds.repeat(1, num_images_per_prompt, 1).view(
-        bs_embed * num_images_per_prompt, -1
-    )
-    negative_pooled_prompt_embeds = negative_pooled_prompt_embeds.repeat(1, num_images_per_prompt, 1).view(
-        bs_embed * num_images_per_prompt, -1
-    )
+    pooled_prompt_embeds = pooled_prompt_embeds.repeat(1, num_images_per_prompt, 1).view(bs_embed * num_images_per_prompt, -1)
+    negative_pooled_prompt_embeds = negative_pooled_prompt_embeds.repeat(1, num_images_per_prompt, 1).view(bs_embed * num_images_per_prompt, -1)
 
     return prompt_embeds, negative_prompt_embeds, pooled_prompt_embeds, negative_pooled_prompt_embeds
 

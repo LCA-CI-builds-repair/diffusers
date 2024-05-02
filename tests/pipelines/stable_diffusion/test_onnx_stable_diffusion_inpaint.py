@@ -47,9 +47,8 @@ class OnnxStableDiffusionInpaintPipelineIntegrationTests(unittest.TestCase):
         return (
             "CUDAExecutionProvider",
             {
-                "gpu_mem_limit": "15000000000",  # 15GB
                 "arena_extend_strategy": "kSameAsRequested",
-            },
+            }
         )
 
     @property

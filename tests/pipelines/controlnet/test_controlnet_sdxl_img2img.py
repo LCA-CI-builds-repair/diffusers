@@ -218,9 +218,8 @@ class ControlNetPipelineSDXLImg2ImgFastTests(
     def test_inference_batch_single_identical(self):
         self._test_inference_batch_single_identical(expected_max_diff=2e-3)
 
-    # TODO(Patrick, Sayak) - skip for now as this requires more refiner tests
     def test_save_load_optional_components(self):
-        pass
+        # Add test cases or implementation for saving and loading optional components
 
     @require_torch_gpu
     def test_stable_diffusion_xl_offloads(self):
