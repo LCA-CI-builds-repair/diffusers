@@ -20,7 +20,7 @@ import torch
 import torch.nn as nn
 
 from ...configuration_utils import ConfigMixin, register_to_config
-from ...loaders import PeftAdapterMixin, UNet2DConditionLoadersMixin
+from ...loaders import FromSingleFileMixin, PeftAdapterMixin, UNet2DConditionLoadersMixin
 from ...models.attention_processor import (
     ADDED_KV_ATTENTION_PROCESSORS,
     CROSS_ATTENTION_PROCESSORS,

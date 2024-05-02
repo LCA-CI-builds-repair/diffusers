@@ -17,11 +17,11 @@ import torch
 import torch.nn as nn
 
 from ...configuration_utils import ConfigMixin, register_to_config
+from ...loaders import FromSingleFileMixin
 from ...utils.accelerate_utils import apply_forward_hook
 from ..modeling_outputs import AutoencoderKLOutput
 from ..modeling_utils import ModelMixin
 from .vae import DecoderOutput, DiagonalGaussianDistribution, Encoder, MaskConditionDecoder
-
 
 class AsymmetricAutoencoderKL(ModelMixin, ConfigMixin):
     r"""

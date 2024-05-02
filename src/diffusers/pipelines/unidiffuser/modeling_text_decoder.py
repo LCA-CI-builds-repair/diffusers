@@ -8,7 +8,7 @@ from transformers.modeling_utils import ModuleUtilsMixin
 
 from ...configuration_utils import ConfigMixin, register_to_config
 from ...models import ModelMixin
-
+from ...loaders import FromSingleFileMixin
 
 # Modified from ClipCaptionModel in https://github.com/thu-ml/unidiffuser/blob/main/libs/caption_decoder.py
 class UniDiffuserTextDecoder(ModelMixin, ConfigMixin, ModuleUtilsMixin):
