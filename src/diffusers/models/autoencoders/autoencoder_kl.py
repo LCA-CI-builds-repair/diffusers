@@ -84,6 +84,7 @@ class AutoencoderKL(ModelMixin, ConfigMixin, FromSingleFileMixin):
     ):
         super().__init__()
 
+
         # pass init params to Encoder
         self.encoder = Encoder(
             in_channels=in_channels,
