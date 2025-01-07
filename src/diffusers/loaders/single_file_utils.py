@@ -35,7 +35,6 @@ from ..schedulers import (
     DDIMScheduler,
     DDPMScheduler,
     DPMSolverMultistepScheduler,
-    EulerAncestralDiscreteScheduler,
     EulerDiscreteScheduler,
     HeunDiscreteScheduler,
     LMSDiscreteScheduler,
