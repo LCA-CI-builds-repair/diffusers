@@ -1,5 +1,6 @@
 # Copyright 2023 The HuggingFace Team. All rights reserved.
 #
+# This file has been modified from the original.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -16,6 +17,7 @@ import inspect
 from typing import Any, Callable, Dict, List, Optional, Union
 from safetensors import safe_open
 
+import sys
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -42,6 +44,14 @@ from diffusers.pipelines.pipeline_utils import DiffusionPipeline
 from diffusers.pipelines.stable_diffusion.pipeline_output import StableDiffusionPipelineOutput
 from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
 
+
+def main():
+    try:
+        # Your existing code
+        pass
+    except ImportError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
