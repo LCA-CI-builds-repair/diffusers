@@ -13,14 +13,6 @@
 # limitations under the License.
 
 import inspect
-from typing import Any, Callable, Dict, List, Optional, Union
-from safetensors import safe_open
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from packaging import version
-from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
 from diffusers.configuration_utils import FrozenDict
 from diffusers.image_processor import VaeImageProcessor
@@ -37,10 +29,17 @@ from diffusers.utils import (
     scale_lora_layers,
     unscale_lora_layers,
 )
-from diffusers.utils.torch_utils import randn_tensor
 from diffusers.pipelines.pipeline_utils import DiffusionPipeline
-from diffusers.pipelines.stable_diffusion.pipeline_output import StableDiffusionPipelineOutput
+from diffusers.pipelines.stable_diffusion import StableDiffusionPipelineOutput
 from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
+from packaging import version
+from safetensors import safe_open
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from diffusers.utils.torch_utils import randn_tensor
+from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
+from typing import Any, Callable, Dict, List, Optional, Union
 
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
