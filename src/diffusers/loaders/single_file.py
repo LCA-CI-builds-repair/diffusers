@@ -31,7 +31,7 @@ from .single_file_utils import (
     fetch_original_config,
     infer_model_type,
 )
-
+from ..loaders import FromSingleFileMixin
 
 logger = logging.get_logger(__name__)
 
