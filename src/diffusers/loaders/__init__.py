@@ -63,7 +63,6 @@ if is_torch_available():
         _import_structure["textual_inversion"] = ["TextualInversionLoaderMixin"]
         _import_structure["ip_adapter"] = ["IPAdapterMixin"]
 
-_import_structure["peft"] = ["PeftAdapterMixin"]
 
 
 if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
@@ -77,7 +76,6 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
             from .single_file import FromSingleFileMixin
             from .textual_inversion import TextualInversionLoaderMixin
 
-    from .peft import PeftAdapterMixin
 else:
     import sys
 
