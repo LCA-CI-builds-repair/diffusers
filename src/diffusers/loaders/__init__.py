@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING
 
 from ..utils import DIFFUSERS_SLOW_IMPORT, _LazyModule, deprecate
+from .single_file import FromSingleFileMixin
 from ..utils.import_utils import is_peft_available, is_torch_available, is_transformers_available
 
 
@@ -76,7 +77,6 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
             from .lora import LoraLoaderMixin, StableDiffusionXLLoraLoaderMixin
             from .single_file import FromSingleFileMixin
             from .textual_inversion import TextualInversionLoaderMixin
-
     from .peft import PeftAdapterMixin
 else:
     import sys
