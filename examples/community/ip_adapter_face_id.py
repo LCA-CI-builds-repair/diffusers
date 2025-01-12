@@ -14,11 +14,11 @@
 
 import inspect
 from typing import Any, Callable, Dict, List, Optional, Union
-from safetensors import safe_open
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from safetensors import safe_open
 from packaging import version
 from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
@@ -28,6 +28,9 @@ from diffusers.loaders import FromSingleFileMixin, IPAdapterMixin, LoraLoaderMix
 from diffusers.models import AutoencoderKL, UNet2DConditionModel
 from diffusers.models.attention_processor import FusedAttnProcessor2_0
 from diffusers.models.lora import adjust_lora_scale_text_encoder, LoRALinearLayer
+from diffusers.pipelines.pipeline_utils import DiffusionPipeline
+from diffusers.pipelines.stable_diffusion.pipeline_output import StableDiffusionPipelineOutput
+from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
 from diffusers.schedulers import KarrasDiffusionSchedulers
 from diffusers.utils import (
     _get_model_file,
@@ -38,10 +41,6 @@ from diffusers.utils import (
     unscale_lora_layers,
 )
 from diffusers.utils.torch_utils import randn_tensor
-from diffusers.pipelines.pipeline_utils import DiffusionPipeline
-from diffusers.pipelines.stable_diffusion.pipeline_output import StableDiffusionPipelineOutput
-from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
-
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
