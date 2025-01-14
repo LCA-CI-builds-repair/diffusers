@@ -76,7 +76,7 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
             from .lora import LoraLoaderMixin, StableDiffusionXLLoraLoaderMixin
             from .single_file import FromSingleFileMixin
             from .textual_inversion import TextualInversionLoaderMixin
-
+            
     from .peft import PeftAdapterMixin
 else:
     import sys
