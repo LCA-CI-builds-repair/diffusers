@@ -14,11 +14,11 @@
 
 import inspect
 from typing import Any, Callable, Dict, List, Optional, Union
-from safetensors import safe_open
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from safetensors import safe_open
 from packaging import version
 from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
