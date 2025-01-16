@@ -55,6 +55,7 @@ _import_structure = {}
 
 if is_torch_available():
     _import_structure["unet"] = ["UNet2DConditionLoadersMixin"]
+    _import_structure["autoencoders"] = ["AutoencoderKL"]
     _import_structure["utils"] = ["AttnProcsLayers"]
 
     if is_transformers_available():
