@@ -301,6 +301,8 @@ def set_image_size(pipeline_class_name, original_config, checkpoint, image_size=
 
 # Copied from diffusers.pipelines.stable_diffusion.convert_from_ckpt.conv_attn_to_linear
 def conv_attn_to_linear(checkpoint):
+    if checkpoint["query.weight"].ndim > 2:
+        checkpoint["query.weight"] = checkpoint["query.weight"][:, :, 0, 0]
     keys = list(checkpoint.keys())
     attn_keys = ["query.weight", "key.weight", "value.weight"]
     for key in keys:
@@ -462,6 +464,10 @@ def create_vae_diffusers_config(original_config, image_size: int):
 
 
 def update_unet_resnet_ldm_to_diffusers(ldm_keys, new_checkpoint, checkpoint, mapping=None):
+    if checkpoint[ldm_key].ndim > 2 and "conv_shortcut" in diffusers_key:
+        new_checkpoint[diffusers_key] = checkpoint[ldm_key][:, :, 0, 0]
+    if checkpoint[ldm_key].ndim > 2 and "conv_shortcut" in diffusers_key:
+        new_checkpoint[diffusers_key] = checkpoint[ldm_key][:, :, 0, 0]
     for ldm_key in ldm_keys:
         diffusers_key = (
             ldm_key.replace("in_layers.0", "norm1")
@@ -477,12 +483,16 @@ def update_unet_resnet_ldm_to_diffusers(ldm_keys, new_checkpoint, checkpoint, ma
 
 
 def update_unet_attention_ldm_to_diffusers(ldm_keys, new_checkpoint, checkpoint, mapping):
+    if checkpoint[ldm_key].ndim > 2 and "attn" in diffusers_key:
+        new_checkpoint[diffusers_key] = checkpoint[ldm_key][:, :, 0, 0]
     for ldm_key in ldm_keys:
         diffusers_key = ldm_key.replace(mapping["old"], mapping["new"])
         new_checkpoint[diffusers_key] = checkpoint.pop(ldm_key)
 
 
 def convert_ldm_unet_checkpoint(checkpoint, config, extract_ema=False):
+    if extract_ema and sum(key.startswith("model_ema") for key in checkpoint) > 100:
+        logger.warning("Checkpoint has both EMA and non-EMA weights.")
     """
     Takes a state dict and a config, and returns a converted checkpoint.
     """
