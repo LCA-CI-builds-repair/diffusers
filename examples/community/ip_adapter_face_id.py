@@ -13,12 +13,11 @@
 # limitations under the License.
 
 import inspect
-from typing import Any, Callable, Dict, List, Optional, Union
-from safetensors import safe_open
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from safetensors import safe_open
+from typing import Any, Callable, Dict, List, Optional, Union
 from packaging import version
 from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
@@ -32,8 +31,8 @@ from diffusers.schedulers import KarrasDiffusionSchedulers
 from diffusers.utils import (
     _get_model_file,
     USE_PEFT_BACKEND,
-    deprecate,
     logging,
+    deprecate,
     scale_lora_layers,
     unscale_lora_layers,
 )
