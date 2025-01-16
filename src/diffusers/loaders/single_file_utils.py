@@ -538,8 +538,10 @@ def convert_ldm_unet_checkpoint(checkpoint, config, extract_ema=False):
     num_input_blocks = len({".".join(layer.split(".")[:2]) for layer in unet_state_dict if "input_blocks" in layer})
     input_blocks = {
         layer_id: [key for key in unet_state_dict if f"input_blocks.{layer_id}" in key]
-        for layer_id in range(num_input_blocks)
     }
+        for layer_id in range(num_input_blocks)
+        # added code to initialize empty weights
+        init_empty_weights(unet_state_dict)
 
     # Retrieves the keys for the middle blocks only
     num_middle_blocks = len({".".join(layer.split(".")[:2]) for layer in unet_state_dict if "middle_block" in layer})
