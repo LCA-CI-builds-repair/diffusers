@@ -20,9 +20,8 @@ from contextlib import nullcontext
 from io import BytesIO
 
 import requests
-import torch
 import yaml
-from safetensors.torch import load_file as safe_load
+from safetensors.torch import load_file
 from transformers import (
     CLIPTextConfig,
     CLIPTextModel,
