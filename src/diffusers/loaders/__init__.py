@@ -4,6 +4,10 @@ from ..utils import DIFFUSERS_SLOW_IMPORT, _LazyModule, deprecate
 from ..utils.import_utils import is_peft_available, is_torch_available, is_transformers_available
 
 
+# Make FromSingleFileMixin available at the package level
+from .single_file import FromSingleFileMixin
+
+
 def text_encoder_lora_state_dict(text_encoder):
     deprecate(
         "text_encoder_load_state_dict in `models`",
@@ -57,8 +61,8 @@ if is_torch_available():
     _import_structure["unet"] = ["UNet2DConditionLoadersMixin"]
     _import_structure["utils"] = ["AttnProcsLayers"]
 
+    _import_structure["single_file"] = ["FromSingleFileMixin"]
     if is_transformers_available():
-        _import_structure["single_file"] = ["FromSingleFileMixin"]
         _import_structure["lora"] = ["LoraLoaderMixin", "StableDiffusionXLLoraLoaderMixin"]
         _import_structure["textual_inversion"] = ["TextualInversionLoaderMixin"]
         _import_structure["ip_adapter"] = ["IPAdapterMixin"]
