@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from typing import Any, Callable, Dict, List, Optional, Union 
 import inspect
-from typing import Any, Callable, Dict, List, Optional, Union
+from packaging import version
 from safetensors import safe_open
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from packaging import version
 from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
 from diffusers.configuration_utils import FrozenDict
