@@ -33,7 +33,6 @@ from transformers import (
 from ..models import UNet2DConditionModel
 from ..schedulers import (
     DDIMScheduler,
-    DDPMScheduler,
     DPMSolverMultistepScheduler,
     EulerAncestralDiscreteScheduler,
     EulerDiscreteScheduler,
