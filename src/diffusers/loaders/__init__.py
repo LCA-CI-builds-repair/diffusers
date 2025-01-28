@@ -63,6 +63,7 @@ if is_torch_available():
         _import_structure["textual_inversion"] = ["TextualInversionLoaderMixin"]
         _import_structure["ip_adapter"] = ["IPAdapterMixin"]
 
+    from .single_file import FromSingleFileMixin
 _import_structure["peft"] = ["PeftAdapterMixin"]
 
 
