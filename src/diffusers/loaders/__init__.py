@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 
 from ..utils import DIFFUSERS_SLOW_IMPORT, _LazyModule, deprecate
 from ..utils.import_utils import is_peft_available, is_torch_available, is_transformers_available
+from .single_file import FromSingleFileMixin
 
 
 def text_encoder_lora_state_dict(text_encoder):
@@ -54,7 +55,8 @@ if is_transformers_available():
 _import_structure = {}
 
 if is_torch_available():
-    _import_structure["unet"] = ["UNet2DConditionLoadersMixin"]
+    _import_structure["single_file"] = ["FromSingleFileMixin"]
+import_structure["unet"] = ["UNet2DConditionLoadersMixin"]
     _import_structure["utils"] = ["AttnProcsLayers"]
 
     if is_transformers_available():
