@@ -20,8 +20,6 @@ from contextlib import nullcontext
 from io import BytesIO
 
 import requests
-import torch
-import yaml
 from safetensors.torch import load_file as safe_load
 from transformers import (
     CLIPTextConfig,
@@ -42,6 +40,7 @@ from ..schedulers import (
     PNDMScheduler,
 )
 from ..utils import is_accelerate_available, logging
+import yaml
 
 
 if is_accelerate_available():
