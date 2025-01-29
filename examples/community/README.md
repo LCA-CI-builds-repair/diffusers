@@ -241,6 +241,10 @@ for i, img in enumerate(images):
 
 The `images` list contains a list of PIL images that can be saved locally or displayed directly in a google colab.
 Generated images tend to be of higher qualtiy than natively using stable diffusion. E.g. the above script generates the following images:
+### Imagic Stable Diffusion
+Allows you to edit an image using stable diffusion.
+
+
 
 ![clip_guidance](https://huggingface.co/datasets/patrickvonplaten/images/resolve/main/clip_guidance/merged_clip_guidance.jpg).
 
