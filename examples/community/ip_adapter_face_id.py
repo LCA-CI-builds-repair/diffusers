@@ -13,10 +13,11 @@
 # limitations under the License.
 
 import inspect
-from typing import Any, Callable, Dict, List, Optional, Union
-from safetensors import safe_open
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
+from safetensors import safe_open
 import torch
+from torch import FloatTensor
 import torch.nn as nn
 import torch.nn.functional as F
 from packaging import version
@@ -28,6 +29,7 @@ from diffusers.loaders import FromSingleFileMixin, IPAdapterMixin, LoraLoaderMix
 from diffusers.models import AutoencoderKL, UNet2DConditionModel
 from diffusers.models.attention_processor import FusedAttnProcessor2_0
 from diffusers.models.lora import adjust_lora_scale_text_encoder, LoRALinearLayer
+from diffusers.pipelines.pipeline_utils import DiffusionPipeline
 from diffusers.schedulers import KarrasDiffusionSchedulers
 from diffusers.utils import (
     _get_model_file,
@@ -38,8 +40,7 @@ from diffusers.utils import (
     unscale_lora_layers,
 )
 from diffusers.utils.torch_utils import randn_tensor
-from diffusers.pipelines.pipeline_utils import DiffusionPipeline
-from diffusers.pipelines.stable_diffusion.pipeline_output import StableDiffusionPipelineOutput
+
 from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
 
 
@@ -332,7 +333,7 @@ class IPAdapterFullImageProjection(nn.Module):
         self.ff = FeedForward(image_embed_dim, cross_attention_dim * num_tokens, mult=mult, activation_fn="gelu")
         self.norm = nn.LayerNorm(cross_attention_dim)
 
-    def forward(self, image_embeds: torch.FloatTensor):
+    def forward(self, image_embeds: FloatTensor):
         x = self.ff(image_embeds)
         x = x.reshape(-1, self.num_tokens, self.cross_attention_dim)
         return self.norm(x)
