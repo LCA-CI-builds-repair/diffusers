@@ -13,13 +13,13 @@
 # limitations under the License.
 
 import inspect
+from packaging import version
 from typing import Any, Callable, Dict, List, Optional, Union
 from safetensors import safe_open
 
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
-from packaging import version
+import torch.nn as nn
 from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
 from diffusers.configuration_utils import FrozenDict
