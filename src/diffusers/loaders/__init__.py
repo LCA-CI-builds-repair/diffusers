@@ -1,5 +1,6 @@
 from typing import TYPE_CHECKING
 
+from .single_file import FromSingleFileMixin
 from ..utils import DIFFUSERS_SLOW_IMPORT, _LazyModule, deprecate
 from ..utils.import_utils import is_peft_available, is_torch_available, is_transformers_available
 
