@@ -20,7 +20,6 @@ from contextlib import nullcontext
 from io import BytesIO
 
 import requests
-import torch
 import yaml
 from safetensors.torch import load_file as safe_load
 from transformers import (
@@ -29,7 +28,6 @@ from transformers import (
     CLIPTextModelWithProjection,
     CLIPTokenizer,
 )
-
 from ..models import UNet2DConditionModel
 from ..schedulers import (
     DDIMScheduler,
